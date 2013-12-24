@@ -3,22 +3,26 @@ package com.goparty.model;
 import java.util.UUID;
 
 public class User {
-	private UUID id;
+	private String id;
 	private String nickName;
     private String password;
     private String userName;
     
-    public User(UUID id, String nickName, String password, String userName) {
+    public User() {
+    	
+    }
+    
+    public User(String id, String nickName, String password, String userName) {
     	this.id = id;
     	this.nickName = nickName;
     	this.password = password;
     	this.userName = userName;
     }
     
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNickName() {

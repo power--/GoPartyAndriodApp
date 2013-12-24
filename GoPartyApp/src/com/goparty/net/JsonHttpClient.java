@@ -10,10 +10,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.JavaType;
 
 public class JsonHttpClient {
 	private static final String DEFAULT_CHARSET = "UTF-8";
@@ -59,6 +59,7 @@ public class JsonHttpClient {
 	    	  conn.disconnect();
 	    }
 	}
+	
 	public static String get(String url) throws MalformedURLException, IOException{
 	    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 	    
@@ -96,6 +97,95 @@ public class JsonHttpClient {
 	    
 	}
 	
+	public static String post(String url, byte[] content) throws IOException {
+		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();		
+		try {
+	    		conn.setRequestMethod("POST");
+	    		conn.setRequestProperty("Content-type","application/json");
+	    		//conn.setDoOutput(true);
+	    		conn.setConnectTimeout(TIMEOUT);
+	    		conn.setReadTimeout(TIMEOUT);
+	    		
+	    		//conn.getOutputStream().write(content.getBytes());
+	    		conn.getOutputStream().write(content);
+	    		conn.getOutputStream().flush();
+	    		conn.getOutputStream().close();	    
+	    	
+	    		int code = conn.getResponseCode();
+	    		//conn.getHeaderField("chartset");
+	    	
+		    	if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {
+		    		InputStream errorStream = conn.getErrorStream();
+		    		
+		    		try {
+		    			String errorData = streamToString(errorStream);
+		    			throw new HttpException(code, errorData);
+		    		} finally {
+		    			errorStream.close();
+		    		}
+		    	}
+		    	
+		    	InputStream responseStream = conn.getInputStream();
+		    	try {
+		    			return streamToString(responseStream);
+		    		} finally {
+	    			responseStream.close();
+	    		}
+	    	} finally {
+		    	if(conn!=null)
+		    	  conn.disconnect();
+		}
+	}
+	
+	public static String post(String url, String content) throws IOException {
+		return post(url, content.getBytes());
+	}
+	
+	public static boolean post(String url, Object value) throws
+		IOException,
+		JsonGenerationException,
+		JsonMappingException {		
+		ObjectMapper mapper = new ObjectMapper();
+		byte[] content = mapper.writeValueAsBytes(value);
+		//String content = mapper.writeValueAsString(value);
+		
+//		content = "{\"nickName\": \"rongji\", \"password\": \"password1\",\"userName\": \"rongjisu\" }";
+//		content = "{\"id\":null, \"nickName\": \"rongji\", \"password\": \"password1\",\"userName\": \"rongjisu\" }";
+		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+		
+		try {
+	    		conn.setRequestMethod("POST");
+	    		conn.setRequestProperty("Content-type","application/json");
+	    		//conn.setDoOutput(true);
+	    		conn.setConnectTimeout(TIMEOUT);
+	    		conn.setReadTimeout(TIMEOUT);
+	    		
+	    		//conn.getOutputStream().write(content.getBytes());
+	    		conn.getOutputStream().write(content);
+	    		conn.getOutputStream().flush();
+	    		conn.getOutputStream().close();	    
+	    	
+	    		int code = conn.getResponseCode();
+	    		//conn.getHeaderField("chartset");
+	    	
+		    	if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {
+		    		InputStream errorStream = conn.getErrorStream();
+		    		
+		    		try {
+		    			String errorData = streamToString(errorStream);
+		    			throw new HttpException(code, errorData);
+		    		} finally {
+		    			errorStream.close();
+		    		}
+		    	}
+		    	
+		    	return true;
+	    	} finally {
+		    	if(conn!=null)
+		    	  conn.disconnect();
+		}
+	}
+		
 	public void setRequestProperty(String field, String value) {
 //		httpurlconnection.setRequestProperty("Content-type", "text/html"); 
 		requestProperties.put(field, value);

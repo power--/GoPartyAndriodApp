@@ -20,11 +20,16 @@ public class Welcome extends Activity {
 		startActivity(intent);
 		//this.finish();
       }  
-    public void welcome_register(View v) {  
-      	Intent intent = new Intent();
+    public void welcome_register(View v) {
+    	Intent intent = new Intent();
+		intent.setClass(Welcome.this, RegisterActivity.class);
+		startActivity(intent);
+    }
+    
+    public void welcome_main(View v) {
+    	Intent intent = new Intent();
 		intent.setClass(Welcome.this,MainWeixin.class);
 		startActivity(intent);
 		//this.finish();
-      }  
-   
+    }
 }
