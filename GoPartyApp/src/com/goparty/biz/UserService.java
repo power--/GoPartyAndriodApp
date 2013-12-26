@@ -8,9 +8,6 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-
 import com.goparty.model.User;
 import com.goparty.net.JsonHttpClient;
 
@@ -63,5 +60,15 @@ public class UserService {
 		}
 	}
 	
+	public boolean ValidateNickName(String nickName) {
+		return nickName.length() >= 3;
+	}
 	
+	public boolean ValidatePassword(String password) {
+		return password.length() >= 3;
+	}
+	
+	public boolean ValidateUserName(String userName) {
+		return userName.length() >= 3;
+	}
 }
