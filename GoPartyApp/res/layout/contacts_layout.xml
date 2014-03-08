@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" 
+     android:orientation="vertical">
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/goparty_activity_header"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="10dp">
+	    	<Button
+			    android:id="@+id/btn_nav_contact_create"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_gravity="center_vertical"
+			    android:background="@drawable/goparty_icon_add"
+			    android:contentDescription="@string/add" />
+		    <TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/contact" />
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#C0C0C0"
+	    android:paddingTop="5dp"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:paddingBottom="5dp">
+		<EditText
+		    android:id="@+id/contact_search"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:background="@drawable/login_editbox"
+		    android:ems="10"
+		    android:hint="@string/search"
+		    android:singleLine="true"
+		    android:textColor="#000"
+		    android:textSize="15sp" />
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#eee"
+	    android:paddingTop="5dp"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:paddingBottom="5dp">
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"        	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/goparty_icon_guys"
+ 				android:contentDescription="@string/details" />
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:paddingLeft="10dp"
+		        android:paddingTop="5dp"
+	    		android:paddingBottom="5dp"
+		        android:textSize="18sp"
+		        android:textColor="#656565"
+		        android:text="@string/new_contact" />	
+			<TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"       	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/mm_submenu"
+ 				android:contentDescription="@string/details" /> 
+	</LinearLayout>
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:background="#E5E5E5">
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:background="#ffcccccc"/>
+		<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="left"
+		        android:paddingTop="5dp"
+	    		android:paddingBottom="5dp"
+		        android:paddingLeft="10dp"
+		        android:textSize="15sp"
+		        android:textColor="#656565"
+		        android:text="@string/friend" />
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:background="#ffcccccc"/>
+	</LinearLayout>
+	
+	<ListView 
+		android:id="@+id/contactsListView"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:background="#eee">
+		</ListView>
+
+</LinearLayout>

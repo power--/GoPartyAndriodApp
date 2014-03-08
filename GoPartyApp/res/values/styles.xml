@@ -2,6 +2,28 @@
 
     <style name="AppTheme" parent="android:Theme.Light" /> 
     
+    <!-- GoParty start-->
+    <style name="style_login_radio_btns">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>  
+        <item name="android:button">@null</item>  
+        <item name="android:paddingTop">@dimen/space_1</item>
+        <item name="android:paddingBottom">@dimen/space_3</item>
+        <item name="android:padding">0dip</item>
+    </style>
+    <!-- GoParty end -->
+    
+    <!-- dianping -->
+    <style name="CustomListItem">
+        <item name="android:listSelector">@drawable/list_item</item>
+    </style>
+    
     <style name="chat_text_date_style">
 	    <item name="android:padding">2dp</item>    
 		<item name="android:textColor">#ffffff</item>   

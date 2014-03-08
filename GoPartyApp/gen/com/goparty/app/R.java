@@ -21,6 +21,14 @@ public final class R {
         public static final int push_top_in2=0x7f040009;
         public static final int push_top_out=0x7f04000a;
         public static final int push_top_out2=0x7f04000b;
+        public static final int in_from_right=0x7f040006;
+        public static final int out_to_left=0x7f040007;
+        public static final int push_bottom_in=0x7f040008;
+        public static final int push_bottom_out=0x7f040009;
+        public static final int push_top_in=0x7f04000a;
+        public static final int push_top_in2=0x7f04000b;
+        public static final int push_top_out=0x7f04000c;
+        public static final int push_top_out2=0x7f04000d;
     }
     public static final class attr {
     }

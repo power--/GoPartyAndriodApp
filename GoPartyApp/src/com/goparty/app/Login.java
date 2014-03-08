@@ -11,61 +11,102 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Login extends Activity {
-	private EditText mUser; // ÕÊºÅ±à¼­¿ò
-	private EditText mPassword; // ÃÜÂë±à¼­¿ò
+//	private EditText mUser; // ï¿½ÊºÅ±à¼­ï¿½ï¿½
+//	private EditText mPassword; // ï¿½ï¿½ï¿½ï¿½à¼­ï¿½ï¿½
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         
-        mUser = (EditText)findViewById(R.id.login_user_edit);
-        mPassword = (EditText)findViewById(R.id.login_passwd_edit);
-        
+//        mUser = (EditText)findViewById(R.id.login_user_edit);
+//        mPassword = (EditText)findViewById(R.id.login_passwd_edit);     
     }
-
-    public void login_mainweixin(View v) {
-    	if("buaa".equals(mUser.getText().toString()) && "123".equals(mPassword.getText().toString()))   //ÅĞ¶Ï ÕÊºÅºÍÃÜÂë
-        {
-             Intent intent = new Intent();
-             intent.setClass(Login.this,LoadingActivity.class);
-             startActivity(intent);
-             //Toast.makeText(getApplicationContext(), "µÇÂ¼³É¹¦", Toast.LENGTH_SHORT).show();
-          }
-        else if("".equals(mUser.getText().toString()) || "".equals(mPassword.getText().toString()))   //ÅĞ¶Ï ÕÊºÅºÍÃÜÂë
-        {
-        	new AlertDialog.Builder(Login.this)
-			.setIcon(getResources().getDrawable(R.drawable.login_error_icon))
-			.setTitle("µÇÂ¼´íÎó")
-			.setMessage("Î¢ĞÅÕÊºÅ»òÕßÃÜÂë²»ÄÜÎª¿Õ£¬\nÇëÊäÈëºóÔÙµÇÂ¼£¡")
-			.create().show();
-         }
-        else{
-           
-        	new AlertDialog.Builder(Login.this)
-			.setIcon(getResources().getDrawable(R.drawable.login_error_icon))
-			.setTitle("µÇÂ¼Ê§°Ü")
-			.setMessage("Î¢ĞÅÕÊºÅ»òÕßÃÜÂë²»ÕıÈ·£¬\nÇë¼ì²éºóÖØĞÂÊäÈë£¡")
-			.create().show();
-        }
-    	
-    	//µÇÂ¼°´Å¥
-    	/*
-      	Intent intent = new Intent();
-		intent.setClass(Login.this,Whatsnew.class);
-		startActivity(intent);
-		Toast.makeText(getApplicationContext(), "µÇÂ¼³É¹¦", Toast.LENGTH_SHORT).show();
-		this.finish();*/
-      }  
-    public void login_back(View v) {     //±êÌâÀ¸ ·µ»Ø°´Å¥
-      	this.finish();
-      }  
-    public void login_pw(View v) {     //Íü¼ÇÃÜÂë°´Å¥
-    	Uri uri = Uri.parse("http://3g.qq.com"); 
-    	Intent intent = new Intent(Intent.ACTION_VIEW, uri); 
+    
+    private void initFootBar() {
+//		fbNews = (RadioButton) findViewById(R.id.main_footbar_news);
+//		fbQuestion = (RadioButton) findViewById(R.id.main_footbar_question);
+//		fbTweet = (RadioButton) findViewById(R.id.main_footbar_tweet);
+//		fbactive = (RadioButton) findViewById(R.id.main_footbar_active);
+//
+//		fbSetting = (ImageView) findViewById(R.id.main_footbar_setting);
+//		fbSetting.setOnClickListener(new View.OnClickListener() {
+//			public void onClick(View v) {
+//				// å±•ç¤ºå¿«æ·æ &åˆ¤æ–­æ˜¯å¦ç™»å½•&æ˜¯å¦åŠ è½½æ–‡ç« å›¾ç‰‡
+//				UIHelper.showSettingLoginOrLogout(Main.this,
+//						mGrid.getQuickAction(0));
+//				mGrid.show(v);
+//			}
+//		});
+	}
+//
+//    public void login_mainweixin(View v) {
+//    	if("buaa".equals(mUser.getText().toString()) && "123".equals(mPassword.getText().toString()))   //ï¿½Ğ¶ï¿½ ï¿½ÊºÅºï¿½ï¿½ï¿½ï¿½ï¿½
+//        {
+//             Intent intent = new Intent();
+//             intent.setClass(Login.this,LoadingActivity.class);
+//             startActivity(intent);
+//             //Toast.makeText(getApplicationContext(), "ï¿½ï¿½Â¼ï¿½É¹ï¿½", Toast.LENGTH_SHORT).show();
+//          }
+//        else if("".equals(mUser.getText().toString()) || "".equals(mPassword.getText().toString()))   //ï¿½Ğ¶ï¿½ ï¿½ÊºÅºï¿½ï¿½ï¿½ï¿½ï¿½
+//        {
+//        	new AlertDialog.Builder(Login.this)
+//			.setIcon(getResources().getDrawable(R.drawable.login_error_icon))
+//			.setTitle("ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½")
+//			.setMessage("Î¢ï¿½ï¿½ï¿½ÊºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½Â¼ï¿½ï¿½")
+//			.create().show();
+//         }
+//        else{
+//           
+//        	new AlertDialog.Builder(Login.this)
+//			.setIcon(getResources().getDrawable(R.drawable.login_error_icon))
+//			.setTitle("ï¿½ï¿½Â¼Ê§ï¿½ï¿½")
+//			.setMessage("Î¢ï¿½ï¿½ï¿½ÊºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½È·ï¿½ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¡")
+//			.create().show();
+//        }
+//    	
+//    	//ï¿½ï¿½Â¼ï¿½ï¿½Å¥
+//    	/*
+//      	Intent intent = new Intent();
+//		intent.setClass(Login.this,Whatsnew.class);
+//		startActivity(intent);
+//		Toast.makeText(getApplicationContext(), "ï¿½ï¿½Â¼ï¿½É¹ï¿½", Toast.LENGTH_SHORT).show();
+//		this.finish();*/
+//      }  
+//    public void login_back(View v) {     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+//      	this.finish();
+//      }  
+//    public void login_pw(View v) {     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë°´Å¥
+//    	Uri uri = Uri.parse("http://3g.qq.com"); 
+//    	Intent intent = new Intent(Intent.ACTION_VIEW, uri); 
+//    	startActivity(intent);
+//    	//Intent intent = new Intent();
+//    	//intent.setClass(Login.this,Whatsnew.class);
+//        //startActivity(intent);
+//      }
+    
+    public void go_to_home_clicked(View v) {
+    	Intent intent = new Intent(Login.this,MainWeixin.class); 
     	startActivity(intent);
-    	//Intent intent = new Intent();
-    	//intent.setClass(Login.this,Whatsnew.class);
-        //startActivity(intent);
-      }  
+    	overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
+    
+//    public class LeftRightSlideActivity extends Activity {
+//    	    @Override
+//    	    public void onCreate(Bundle savedInstanceState) {
+//    	        super.onCreate(savedInstanceState);
+//    	        setContentView(R.layout.main);  
+//
+//    	        Button button = (Button)findViewById(R.id.button1);
+//    	        button.setOnClickListener(new View.OnClickListener() { 
+//    	            @Override
+//    	            public void onClick(View v) {
+//    	                Intent intent = new Intent();
+//    	                intent.setClass(LeftRightSlideActivity.this, SlideSecondActivity.class);
+//    	                startActivity(intent);
+//    	                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);               
+//    	            }
+//    	        });
+//    	    }
+//    	}
 }

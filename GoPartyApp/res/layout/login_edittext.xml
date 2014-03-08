@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!--
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    
+    android:layout_gravity="center_vertical"
+     -->
+      
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/login_editbox" 
+    android:orientation="horizontal">
+    <EditText 
+	    android:id="@+id/login_user_edit"
+	    android:layout_width="200dp"
+	    android:layout_height="wrap_content"
+	    android:textColor="#000"
+	    android:textSize="15sp"
+	    android:singleLine="true"
+	    
+	    android:layout_gravity="center_vertical"
+	    android:hint="@string/wechat_number"/>
+    
+    <ImageView
+        android:id="@+id/login_separator_image"
+        android:layout_toRightOf="@id/login_user_edit"
+		android:layout_width="wrap_content"
+	    android:layout_height="40dp"
+		android:src="@drawable/goparty_login_btn_separator"/>
+    
+    <ImageView
+        android:id="@+id/login_bind_status_image"
+        android:layout_toRightOf="@id/login_separator_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/goparty_login_unbinded" />
+
+</RelativeLayout>
+
+<!-- 
+     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="horizontal"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent" 
+    android:background="#eee" 
+    >  
+    <ImageView
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:src="@drawable/goparty_login_btn_separator"/>
+    
+    <ImageView
+        android:id="@+id/login_bind_status_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/goparty_login_unbinded" />
+</LinearLayout>
+ -->  
