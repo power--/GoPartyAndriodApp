@@ -76,22 +76,22 @@ public class CateAdapter extends BaseAdapter
 	private ArrayList<String> getData()
 	{
 		ArrayList<String> data = new ArrayList<String>();
-		data.add("ȫ��Ƶ��");
-		data.add("��ʳ");
-		data.add("���ｭ���");
-		data.add("����");
-		data.add("����");
-		data.add("���");
-		data.add("������");
-		data.add("���ݲ�");
-		data.add("̨���");
-		data.add("�½�/����");
-		data.add("������");
-		data.add("�ز�");
-		data.add("���");
-		data.add("�����");
-		data.add("�ձ�");
-		data.add("��������");
+		data.add("全锟斤拷频锟斤拷");
+		data.add("锟斤拷食");
+		data.add("锟斤拷锟斤江锟斤拷锟�");
+		data.add("锟斤拷锟斤拷");
+		data.add("锟斤拷锟斤拷");
+		data.add("锟斤拷锟�");
+		data.add("锟斤拷锟斤拷锟斤拷");
+		data.add("锟斤拷锟捷诧拷");
+		data.add("台锟斤拷锟�");
+		data.add("锟铰斤拷/锟斤拷锟斤拷");
+		data.add("锟斤拷锟斤拷锟斤拷");
+		data.add("锟截诧拷");
+		data.add("锟斤拷锟�");
+		data.add("锟斤拷锟斤拷锟�");
+		data.add("锟秸憋拷");
+		data.add("锟斤拷锟斤拷锟斤拷锟斤拷");
 		
 		return data;
 	}
