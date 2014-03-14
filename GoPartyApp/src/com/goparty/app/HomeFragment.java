@@ -34,23 +34,23 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.home_layout, null);
         Spinner timeSpinner = (Spinner)v.findViewById(R.id.timeSelector);
 		List<String> timeList = new ArrayList<String>();
-		timeList.add("×î½ü3Ìì");
-		timeList.add("×î½ü7Ìì");
-		timeList.add("×î½ü30Ìì");
+		timeList.add("æœ€è¿‘3å¤©");
+		timeList.add("æœ€è¿‘7å¤©");
+		timeList.add("æœ€è¿‘30å¤©");
         addItemsOnSpinner(timeSpinner,timeList);
         
         Spinner ownerSpinner = (Spinner)v.findViewById(R.id.ownerSelector);
 		List<String> ownerList = new ArrayList<String>();
-		ownerList.add("Èğ±´¿¨");
-		ownerList.add("½Ü¿Ë");
-		ownerList.add("Â¶Î÷");
+		ownerList.add("ç‘è´å¡");
+		ownerList.add("æ°å…‹");
+		ownerList.add("éœ²ä¸");
         addItemsOnSpinner(ownerSpinner,ownerList);
         
         Spinner typeSpinner = (Spinner)v.findViewById(R.id.typeSelector);
 		List<String> typeList = new ArrayList<String>();
-		typeList.add("»§Íâ");
-		typeList.add("½»ÓÑ");
-		typeList.add("ÌåÓı");
+		typeList.add("æˆ·å¤–");
+		typeList.add("äº¤å‹");
+		typeList.add("ä½“è‚²");
         addItemsOnSpinner(typeSpinner,typeList);
         ListView eventlv = (ListView) v.findViewById(R.id.homeEventView);
         EventListAdapter aAdapter = new EventListAdapter(this.getActivity());
