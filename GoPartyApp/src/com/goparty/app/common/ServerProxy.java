@@ -55,46 +55,28 @@ public class ServerProxy
 		if(i == 0)
 		{
 			Map<String, Object> map = new HashMap<String, Object>();
-
-<<<<<<< HEAD
 			map.put("name", "i0_name1");
 			map.put("price", "i0_price1");
 			map.put("addr", "i0_address1");
-=======
-			map.put("name", "Mo-Mo");
-			map.put("price", "禄脌忙藰拢鈭�脩6147");
-			map.put("addr", "陋楼鈭Ｂ垜 禄鈥櫬犖┾棅鈥樏匪�");
->>>>>>> FETCH_HEAD
 			map.put("distance", "5.8km");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 50);
-<<<<<<< HEAD
 			map.put("area", "i0_area1");
-			list.add(map);
-
-			map = new HashMap<String, Object>();
-			map.put("name", "i0_name2");
-			map.put("price", "i0_price2");
-			map.put("addr", "i0_address2");
-=======
-			map.put("area", "鈮ヂ捤浡�");
 			list.add(map);
 
 			map = new HashMap<String, Object>();
 			map.put("name", "鈮ツ甭�");
 			map.put("price", "禄脌忙藰拢鈭�脩6285");
 			map.put("addr", "鈭伮増 禄鈥櫬泵β∨撀棵�");
->>>>>>> FETCH_HEAD
 			map.put("distance", "890m");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 50);
-<<<<<<< HEAD
 			map.put("area", "i0_area2");
 			list.add(map);
 
@@ -102,22 +84,13 @@ public class ServerProxy
 			map.put("name", "i0_name3");
 			map.put("price", "i0_price3");
 			map.put("addr", "i0_address3");
-=======
 			map.put("area", "鈮ヂ捤浡�z");
-			list.add(map);
-
-			map = new HashMap<String, Object>();
-			map.put("name", "惟鈮犅憋瑐鈮ヂ曗�艗鈼娾�惟鈥︹�禄麓鈥濃�拢庐惟铮柯∶嶁垈麓卢鈭懧得嵚Ｂ�");
-			map.put("price", "禄脌忙藰拢鈭�脩660");
-			map.put("addr", "禄脌鈭毭捪��鈮ヂ�楼庐鈮っ�");
->>>>>>> FETCH_HEAD
 			map.put("distance", "8.1km");
 			map.put("tuan", false);
 			map.put("promo", true);
 			map.put("card", true);
 			map.put("checkin", false);
 			map.put("star", 45);
-<<<<<<< HEAD
 			map.put("area", "i0_area3");
 			list.add(map);
 			
@@ -125,22 +98,13 @@ public class ServerProxy
 			map.put("name", "i0_name4");
 			map.put("price", "i0_price4");
 			map.put("addr", "i0_address4");
-=======
 			map.put("area", "鈮ヂ捤浡�");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "卢脙鈮っ嬧墹脮脙赂");
-			map.put("price", "禄脌忙藰拢鈭�脩660");
-			map.put("addr", "卢鈮モ�鈭徬�粹�鈭�鈭衡垶脭鈮っ�");
->>>>>>> FETCH_HEAD
 			map.put("distance", "10km");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 40);
-<<<<<<< HEAD
 			map.put("area", "i0_area4");
 			list.add(map);
 			
@@ -148,22 +112,15 @@ public class ServerProxy
 			map.put("name", "i0_name5");
 			map.put("price", "i0_price5");
 			map.put("addr", "i0_address5");
-=======
-			map.put("area", "鈥櫬⒙甭甭�");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
 			map.put("name", "鈥ε撆撁屸墹脮脙赂");
 			map.put("price", "禄脌忙藰拢鈭�脩669");
 			map.put("addr", "鈮ヂ犈嘎垜 鈮っ嬧墹脮脙赂");
->>>>>>> FETCH_HEAD
 			map.put("distance", "5.0km");
 			map.put("tuan", true);
 			map.put("promo", true);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 45);
-<<<<<<< HEAD
 			map.put("area", "i0_area5");
 			list.add(map);
 			
@@ -179,30 +136,11 @@ public class ServerProxy
 //			map.put("star", 50);
 //			map.put("area", "i0_area6");
 //			list.add(map);
-=======
-			map.put("area", "鈥櫬⒙甭甭�");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "脮谋鈭偮堵烩�卤忙隆艙驴脤脙藱鈭灻傗�鈥�");
-			map.put("price", "禄脌忙藰拢鈭�脩6240");
-			map.put("addr", "禄脌鈭毭捪��鈮ヂ�禄鈥櫬泵β∨撀棵�");
-			map.put("distance", "7.4km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "鈭喢封垈麓鈥撀�");
-			list.add(map);
->>>>>>> FETCH_HEAD
 		}
 		
 		if(i == 1)
 		{
 			Map<String, Object> map = new HashMap<String, Object>();
-
-<<<<<<< HEAD
 			for(int j = 1; j < 7; j++) {
 				map = new HashMap<String, Object>();
 				
@@ -295,84 +233,83 @@ public class ServerProxy
 //			map.put("star", 50);
 //			map.put("area", "±¶…Ω«¯");
 //			list.add(map);
-=======
-			map.put("name", "脕忙酶脮");
-			map.put("price", "禄脌忙藰拢鈭�脩6136");
-			map.put("addr", "艗藴聽惟脙铮柯碘�");
-			map.put("distance", "2.0km");
-			map.put("tuan", true);
-			map.put("promo", false);
-			map.put("card", true);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "鈥撁徛�芦炉");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "忙鈭喢暶�");
-			map.put("price", "禄脌忙藰拢鈭�脩6324");
-			map.put("addr", "隆藱鈭灻柯得柯�禄鈥櫬泵β∨撀棵�");
-			map.put("distance", "4.0km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "芦鈥♀垎梅芦炉");
-			list.add(map);
-
-			map = new HashMap<String, Object>();
-			map.put("name", "艙茠鈭傗�艗藴鈮っ暶兟�");
-			map.put("price", "禄脌忙藰拢鈭�脩676");
-			map.put("addr", "鈥撁徛衡�陋鈥�艗藴聽惟潞脷鈮っ�");
-			map.put("distance", "4.4km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 45);
-			map.put("area", "脌鈥ξ┾墵芦炉");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "脮鈥氣垎鈮埪衡�");
-			map.put("price", "禄脌忙藰拢鈭�脩656");
-			map.put("addr", "陋铮库墺碌鈥櫭�鈭衡垶脭鈮っ�");
-			map.put("distance", "8.0km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 40);
-			map.put("area", "卤露鈥ξ┞�");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "惟鈮犅憋瑐鈮ヂ曗�艗鈼娾�惟鈥︹�禄麓鈥濃�拢庐茠艙忙漏艗藴卢鈭懧得嵚Ｂ�");
-			map.put("price", "禄脌忙藰拢鈭�脩663");
-			map.put("addr", "茠艙忙漏艗藴卢鈭�楼庐鈮っ�");
-			map.put("distance", "6.5km");
-			map.put("tuan", false);
-			map.put("promo", true);
-			map.put("card", true);
-			map.put("checkin", false);
-			map.put("star", 45);
-			map.put("area", "脌鈥ξ┾墵芦炉");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "鈭炁糕埆艙鈭徛ｂ埆拢艙聽鈥︹増聽鈮モ棅鈥孤�拢庐禄鈥欌�卢蟺鈥毬得嵚Ｂ�");
-			map.put("price", "禄脌忙藰拢鈭�脩6246");
-			map.put("addr", "楼脷鈭喢仿増 鈼娾�梅藱鈮っ�");
-			map.put("distance", "6.6km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "卤露鈥ξ┞�");
-			list.add(map);
->>>>>>> FETCH_HEAD
+//			map.put("name", "脕忙酶脮");
+//			map.put("price", "禄脌忙藰拢鈭�脩6136");
+//			map.put("addr", "艗藴聽惟脙铮柯碘�");
+//			map.put("distance", "2.0km");
+//			map.put("tuan", true);
+//			map.put("promo", false);
+//			map.put("card", true);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "鈥撁徛�芦炉");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "忙鈭喢暶�");
+//			map.put("price", "禄脌忙藰拢鈭�脩6324");
+//			map.put("addr", "隆藱鈭灻柯得柯�禄鈥櫬泵β∨撀棵�");
+//			map.put("distance", "4.0km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "芦鈥♀垎梅芦炉");
+//			list.add(map);
+//
+//			map = new HashMap<String, Object>();
+//			map.put("name", "艙茠鈭傗�艗藴鈮っ暶兟�");
+//			map.put("price", "禄脌忙藰拢鈭�脩676");
+//			map.put("addr", "鈥撁徛衡�陋鈥�艗藴聽惟潞脷鈮っ�");
+//			map.put("distance", "4.4km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 45);
+//			map.put("area", "脌鈥ξ┾墵芦炉");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "脮鈥氣垎鈮埪衡�");
+//			map.put("price", "禄脌忙藰拢鈭�脩656");
+//			map.put("addr", "陋铮库墺碌鈥櫭�鈭衡垶脭鈮っ�");
+//			map.put("distance", "8.0km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 40);
+//			map.put("area", "卤露鈥ξ┞�");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "惟鈮犅憋瑐鈮ヂ曗�艗鈼娾�惟鈥︹�禄麓鈥濃�拢庐茠艙忙漏艗藴卢鈭懧得嵚Ｂ�");
+//			map.put("price", "禄脌忙藰拢鈭�脩663");
+//			map.put("addr", "茠艙忙漏艗藴卢鈭�楼庐鈮っ�");
+//			map.put("distance", "6.5km");
+//			map.put("tuan", false);
+//			map.put("promo", true);
+//			map.put("card", true);
+//			map.put("checkin", false);
+//			map.put("star", 45);
+//			map.put("area", "脌鈥ξ┾墵芦炉");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "鈭炁糕埆艙鈭徛ｂ埆拢艙聽鈥︹増聽鈮モ棅鈥孤�拢庐禄鈥欌�卢蟺鈥毬得嵚Ｂ�");
+//			map.put("price", "禄脌忙藰拢鈭�脩6246");
+//			map.put("addr", "楼脷鈭喢仿増 鈼娾�梅藱鈮っ�");
+//			map.put("distance", "6.6km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "卤露鈥ξ┞�");
+//			list.add(map);
+//>>>>>>> FETCH_HEAD
 		}
 		
 		if(i == 2)
@@ -608,26 +545,16 @@ public class ServerProxy
 			list.add(map);
 			
 			map = new HashMap<String, Object>();
-<<<<<<< HEAD
 			map.put("name", "name_last");
 			map.put("price", "price_last");
 			map.put("addr", "addr_last");
-=======
-			map.put("name", "脣梅鈼娾�拢庐卢惟潞鈥溾棅脧碌脥拢漏");
-			map.put("price", "禄脌忙藰拢鈭�脩6206");
-			map.put("addr", "卢惟潞鈥溾棅脧 禄鈥櫬泵β∨撀棵�");
->>>>>>> FETCH_HEAD
 			map.put("distance", "10km");
 			map.put("tuan", false);
 			map.put("promo", true);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 45);
-<<<<<<< HEAD
 			map.put("area", "area_last");
-=======
-			map.put("area", "鈭伱糕亜芦炉");
->>>>>>> FETCH_HEAD
 			list.add(map);
 		}	
 		return list;
