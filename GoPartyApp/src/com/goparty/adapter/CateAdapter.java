@@ -76,22 +76,6 @@ public class CateAdapter extends BaseAdapter
 	private ArrayList<String> getData()
 	{
 		ArrayList<String> data = new ArrayList<String>();
-		data.add("ȫ��Ƶ��");
-		data.add("��ʳ");
-		data.add("���ｭ���");
-		data.add("����");
-		data.add("����");
-		data.add("���");
-		data.add("������");
-		data.add("���ݲ�");
-		data.add("̨���");
-		data.add("�½�/����");
-		data.add("������");
-		data.add("�ز�");
-		data.add("���");
-		data.add("�����");
-		data.add("�ձ�");
-		data.add("��������");
 		
 		return data;
 	}

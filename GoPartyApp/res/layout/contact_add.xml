@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/goparty_top_bg"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp" >
+        <Button
+            android:id="@+id/btn_nav_contact_add_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/goparty_icon_return"
+            android:contentDescription="@string/go_back" />
+        	<TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/add_contact" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/login_linearlayout_btns"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#eee"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+		<TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_vertical"
+	        android:textSize="15sp"
+	        android:text="@string/add_contact_by_search" />
+		<EditText
+            android:id="@+id/event_add_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/editbox_normal"
+            android:drawableRight="@drawable/goparty_icon_search"
+            android:ems="10"
+            android:hint="@string/wechat_qq_mobile"
+            android:singleLine="true"
+            android:textColor="#000"
+            android:textSize="15sp" />
+		<LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/editbox_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+	        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:contentDescription="@string/event_type"
+                android:src="@drawable/goparty_icon_phone" />
+		    <TextView  
+		      	android:layout_width="0dp"  
+		      	android:layout_height="wrap_content" 
+		      	android:textColor="#000"
+		      	android:textSize="15sp"
+		      	android:text="@string/add_contact_by_photo_num" 
+		      	android:layout_weight="1" />  
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:contentDescription="@string/event_type"
+                android:src="@drawable/goparty_arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

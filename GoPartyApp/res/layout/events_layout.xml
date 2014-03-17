@@ -12,16 +12,27 @@
      android:orientation="vertical">
 
 	<LinearLayout
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/goparty_activity_header"
-	    android:paddingLeft="5dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/goparty_top_bg"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp" >
 	    <Button
 		    android:id="@+id/btn_nav_event_create"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@drawable/goparty_icon_add"
 		    android:contentDescription="@string/add" />
+	    <TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/event" />
 	</LinearLayout>
 	
 	<LinearLayout
