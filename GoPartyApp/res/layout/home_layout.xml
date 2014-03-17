@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/goparty_activity_header"
+	    android:gravity="right"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="10dp">
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/event" />
+	</LinearLayout>
+	
+   	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="10dp"
+	    android:orientation="horizontal"
+	    android:background="#eee"
+	    >
+
+    <Spinner
+        android:id="@+id/timeSelector"
+        android:spinnerMode="dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:prompt="@string/event" 
+        android:layout_weight="1"/>
+
+    <Spinner
+        android:id="@+id/ownerSelector"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:layout_weight="1"/>
+    <Spinner
+        android:id="@+id/typeSelector"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        android:layout_weight="1"/>
+	</LinearLayout>
+	
+   	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="10dp"
+	    android:background="#eee">
+		
+   	   	<ListView 
+		android:id="@+id/homeEventView"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+		</ListView>
+	</LinearLayout>
+	
+
+</LinearLayout>
