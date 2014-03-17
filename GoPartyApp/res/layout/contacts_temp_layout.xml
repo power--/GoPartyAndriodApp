@@ -6,6 +6,9 @@
     android:background="#ffffffff"
     android:id="@+id/mytest"
     >
+    
+    
+		<ListView 
 		android:id="@+id/resultlist"
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"

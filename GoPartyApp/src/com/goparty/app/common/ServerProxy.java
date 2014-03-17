@@ -56,164 +56,180 @@ public class ServerProxy
 		{
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			map.put("name", "Mo-Moƒ¡≥°");
-			map.put("price", "»Àæ˘£∫Å0Ñ6147");
-			map.put("addr", "ª¥∫£¬∑ »’ Ω◊‘÷˙");
+			map.put("name", "i0_name1");
+			map.put("price", "i0_price1");
+			map.put("addr", "i0_address1");
 			map.put("distance", "5.8km");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 50);
-			map.put("area", "≥§ƒ˛«¯");
+			map.put("area", "i0_area1");
 			list.add(map);
 
 			map = new HashMap<String, Object>();
-			map.put("name", "≥ıª®");
-			map.put("price", "»Àæ˘£∫Å0Ñ6285");
-			map.put("addr", "∫Á«≈ »’±æ¡œ¿Ì");
+			map.put("name", "i0_name2");
+			map.put("price", "i0_price2");
+			map.put("addr", "i0_address2");
 			map.put("distance", "890m");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 50);
-			map.put("area", "≥§ƒ˛«¯");
+			map.put("area", "i0_area2");
 			list.add(map);
 
 			map = new HashMap<String, Object>();
-			map.put("name", "Ω≠±ﬂ≥«Õ‚Œ◊…Ω…’»´”„£®Ω¡Í∂´¬∑µÍ£©");
-			map.put("price", "»Àæ˘£∫Å0Ñ660");
-			map.put("addr", "»À√Òπ„≥° ¥®≤À");
+			map.put("name", "i0_name3");
+			map.put("price", "i0_price3");
+			map.put("addr", "i0_address3");
 			map.put("distance", "8.1km");
 			map.put("tuan", false);
 			map.put("promo", true);
 			map.put("card", true);
 			map.put("checkin", false);
 			map.put("star", 45);
-			map.put("area", "≥§ƒ˛«¯");
+			map.put("area", "i0_area3");
 			list.add(map);
 			
 			map = new HashMap<String, Object>();
-			map.put("name", "¬Ã≤Ë≤ÕÃ¸");
-			map.put("price", "»Àæ˘£∫Å0Ñ660");
-			map.put("addr", "¬≥—∏π´‘∞ ∫º∞Ô≤À");
+			map.put("name", "i0_name4");
+			map.put("price", "i0_price4");
+			map.put("addr", "i0_address4");
 			map.put("distance", "10km");
 			map.put("tuan", false);
 			map.put("promo", false);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 40);
-			map.put("area", "’¢±±«¯");
+			map.put("area", "i0_area4");
 			list.add(map);
 			
 			map = new HashMap<String, Object>();
-			map.put("name", "…œœÌ≤ÕÃ¸");
-			map.put("price", "»Àæ˘£∫Å0Ñ669");
-			map.put("addr", "≥§ Ÿ¬∑ ≤Ë≤ÕÃ¸");
+			map.put("name", "i0_name5");
+			map.put("price", "i0_price5");
+			map.put("addr", "i0_address5");
 			map.put("distance", "5.0km");
 			map.put("tuan", true);
 			map.put("promo", true);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 45);
-			map.put("area", "’¢±±«¯");
+			map.put("area", "i0_area5");
 			list.add(map);
 			
-			map = new HashMap<String, Object>();
-			map.put("name", "Õı∂¶»’±æ¡œ¿ÌÃ˙∞Â…’");
-			map.put("price", "»Àæ˘£∫Å0Ñ6240");
-			map.put("addr", "»À√Òπ„≥° »’±æ¡œ¿Ì");
-			map.put("distance", "7.4km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "∆÷∂´–¬«¯");
-			list.add(map);
+//			map = new HashMap<String, Object>();
+//			map.put("name", "i0_name6");
+//			map.put("price", "i0_price6");
+//			map.put("addr", "i0_address6");
+//			map.put("distance", "7.4km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "i0_area6");
+//			list.add(map);
 		}
 		
 		if(i == 1)
 		{
 			Map<String, Object> map = new HashMap<String, Object>();
 
-			map.put("name", "ÁæøÕ");
-			map.put("price", "»Àæ˘£∫Å0Ñ6136");
-			map.put("addr", "Œ˜ ΩÃµ„");
-			map.put("distance", "2.0km");
-			map.put("tuan", true);
-			map.put("promo", false);
-			map.put("card", true);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "–Ïª„«¯");
-			list.add(map);
+			for(int j = 1; j < 7; j++) {
+				map = new HashMap<String, Object>();
+				
+				map.put("name", "i"+ i + "_name" + j);
+				map.put("price", "i" + i + "price" + j);
+				map.put("addr", "i" + "address" + j);
+				map.put("distance", "2.0km");
+				map.put("tuan", true);
+				map.put("promo", false);
+				map.put("card", true);
+				map.put("checkin", false);
+				map.put("star", 50);
+				map.put("area", "i" + i + "_area" + j);
+				list.add(map);
+			}
 			
-			map = new HashMap<String, Object>();
-			map.put("name", "æ∆ÕÃ");
-			map.put("price", "»Àæ˘£∫Å0Ñ6324");
-			map.put("addr", "¡˙∞ÿµÿ«¯ »’±æ¡œ¿Ì");
-			map.put("distance", "4.0km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "«‡∆÷«¯");
-			list.add(map);
-
-			map = new HashMap<String, Object>();
-			map.put("name", "œƒ∂‰Œ˜≤ÕÃ¸");
-			map.put("price", "»Àæ˘£∫Å0Ñ676");
-			map.put("addr", "–Ïº“ª„ Œ˜ ΩºÚ≤Õ");
-			map.put("distance", "4.4km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 45);
-			map.put("area", "À…Ω≠«¯");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "Õ‚∆≈º“");
-			map.put("price", "»Àæ˘£∫Å0Ñ656");
-			map.put("addr", "ª≥µ’æ ∫º∞Ô≤À");
-			map.put("distance", "8.0km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 40);
-			map.put("area", "±¶…Ω«¯");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "Ω≠±ﬂ≥«Õ‚Œ◊…Ω…’»´”„£®ƒœæ©Œ˜¬∑µÍ£©");
-			map.put("price", "»Àæ˘£∫Å0Ñ663");
-			map.put("addr", "ƒœæ©Œ˜¬∑ ¥®≤À");
-			map.put("distance", "6.5km");
-			map.put("tuan", false);
-			map.put("promo", true);
-			map.put("card", true);
-			map.put("checkin", false);
-			map.put("star", 45);
-			map.put("area", "À…Ω≠«¯");
-			list.add(map);
-			
-			map = new HashMap<String, Object>();
-			map.put("name", "∞Ÿ∫œ∏£∫£œ …≈ ≥◊‹ª„£®»’‘¬π‚µÍ£©");
-			map.put("price", "»Àæ˘£∫Å0Ñ6246");
-			map.put("addr", "¥Ú∆÷«≈ ◊‘÷˙≤Õ");
-			map.put("distance", "6.6km");
-			map.put("tuan", false);
-			map.put("promo", false);
-			map.put("card", false);
-			map.put("checkin", false);
-			map.put("star", 50);
-			map.put("area", "±¶…Ω«¯");
-			list.add(map);
+//			map.put("name", "i1_name1");
+//			map.put("price", "i1_price1");
+//			map.put("addr", "i1_address1");
+//			map.put("distance", "2.0km");
+//			map.put("tuan", true);
+//			map.put("promo", false);
+//			map.put("card", true);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "i1_area1");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "i1_name1");
+//			map.put("price", "");
+//			map.put("addr", "¡˙∞ÿµÿ«¯ »’±æ¡œ¿Ì");
+//			map.put("distance", "4.0km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "«‡∆÷«¯");
+//			list.add(map);
+//
+//			map = new HashMap<String, Object>();
+//			map.put("name", "œƒ∂‰Œ˜≤ÕÃ¸");
+//			map.put("price", "»Àæ˘£∫Å0Ñ676");
+//			map.put("addr", "–Ïº“ª„ Œ˜ ΩºÚ≤Õ");
+//			map.put("distance", "4.4km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 45);
+//			map.put("area", "À…Ω≠«¯");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "Õ‚∆≈º“");
+//			map.put("price", "»Àæ˘£∫Å0Ñ656");
+//			map.put("addr", "ª≥µ’æ ∫º∞Ô≤À");
+//			map.put("distance", "8.0km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 40);
+//			map.put("area", "±¶…Ω«¯");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "Ω≠±ﬂ≥«Õ‚Œ◊…Ω…’»´”„£®ƒœæ©Œ˜¬∑µÍ£©");
+//			map.put("price", "»Àæ˘£∫Å0Ñ663");
+//			map.put("addr", "ƒœæ©Œ˜¬∑ ¥®≤À");
+//			map.put("distance", "6.5km");
+//			map.put("tuan", false);
+//			map.put("promo", true);
+//			map.put("card", true);
+//			map.put("checkin", false);
+//			map.put("star", 45);
+//			map.put("area", "À…Ω≠«¯");
+//			list.add(map);
+//			
+//			map = new HashMap<String, Object>();
+//			map.put("name", "∞Ÿ∫œ∏£∫£œ …≈ ≥◊‹ª„£®»’‘¬π‚µÍ£©");
+//			map.put("price", "»Àæ˘£∫Å0Ñ6246");
+//			map.put("addr", "¥Ú∆÷«≈ ◊‘÷˙≤Õ");
+//			map.put("distance", "6.6km");
+//			map.put("tuan", false);
+//			map.put("promo", false);
+//			map.put("card", false);
+//			map.put("checkin", false);
+//			map.put("star", 50);
+//			map.put("area", "±¶…Ω«¯");
+//			list.add(map);
 		}
 		
 		if(i == 2)
@@ -449,16 +465,16 @@ public class ServerProxy
 			list.add(map);
 			
 			map = new HashMap<String, Object>();
-			map.put("name", "Ë÷◊”£®¬Ωº“◊ÏµÍ£©");
-			map.put("price", "»Àæ˘£∫Å0Ñ6206");
-			map.put("addr", "¬Ωº“◊Ï »’±æ¡œ¿Ì");
+			map.put("name", "name_last");
+			map.put("price", "price_last");
+			map.put("addr", "addr_last");
 			map.put("distance", "10km");
 			map.put("tuan", false);
 			map.put("promo", true);
 			map.put("card", false);
 			map.put("checkin", false);
 			map.put("star", 45);
-			map.put("area", "∫Áø⁄«¯");
+			map.put("area", "area_last");
 			list.add(map);
 		}	
 		return list;

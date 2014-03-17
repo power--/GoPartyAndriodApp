@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
      android:layout_height="match_parent" 
@@ -8,7 +7,6 @@
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/goparty_activity_header"
 	    android:background="@drawable/goparty_top_bg"
 	    android:paddingLeft="5dp"
 	    android:paddingRight="10dp">
@@ -66,7 +64,6 @@
 				android:layout_gravity="center"        	     	
 				android:scaleType="matrix"
 				android:clickable="true"
-				android:src="@drawable/goparty_icon_guys"
 				android:src="@drawable/goparty_event_invite"
  				android:contentDescription="@string/details" />
 			<TextView
@@ -76,10 +73,8 @@
 		        android:paddingLeft="10dp"
 		        android:paddingTop="5dp"
 	    		android:paddingBottom="5dp"
-		        android:textSize="18sp"
 		        android:textSize="16sp"
 		        android:textColor="#656565"
-		        android:text="@string/new_contact" />	
 		        android:text="@string/event_invite" />	
 			<TextView  
         		android:layout_width="0dp"  
@@ -216,9 +211,7 @@
 		android:id="@+id/contactsListView"
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"
-		android:background="#eee">
 		android:background="#eee"
 		>
 		</ListView>
-
 </LinearLayout>
