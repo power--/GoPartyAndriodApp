@@ -1,4 +1,4 @@
-package com.goparty.adapter;
+/*package com.goparty.adapter;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -229,3 +229,4 @@ public class AreaAdapter extends BaseAdapter {
 		return data;
 	}
 }
+*/

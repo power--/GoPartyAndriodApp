@@ -28,6 +28,9 @@ public class EventCreate extends Activity {
 		 
 		 ImageView eventTypeAddBtn = (ImageView)findViewById(R.id.event_add_type_add);
 		 eventTypeAddBtn.setOnClickListener(onclickEventListener);
+		 
+		 ImageView eventContactAddBtn = (ImageView)findViewById(R.id.event_add_contact);
+		 eventContactAddBtn.setOnClickListener(onclickEventListener);		 
     }
     
     private class LayoutOnClickListener implements OnClickListener {
@@ -42,6 +45,12 @@ public class EventCreate extends Activity {
     			case R.id.event_add_type_add:
     				Intent eventTypeIntent = new Intent(EventCreate.this, EventTypeSelectorActivity.class);			
     	    		startActivity(eventTypeIntent);
+    	    		break;
+    	    		
+    			case R.id.event_add_contact:
+    				Intent contactSelectorIntent = new Intent(EventCreate.this, ContactSelectorActivity.class);			
+    	    		startActivity(contactSelectorIntent);
+    				break;
     				
     			case R.id.btn_nav_event_back:
     				finish();

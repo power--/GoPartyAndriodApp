@@ -11,9 +11,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 public class EventTypeSelectorActivity extends Activity {
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +43,12 @@ public class EventTypeSelectorActivity extends Activity {
   
         gridview.setOnItemClickListener(new ItemClickListener());  
         
-//       LayoutOnClickListener onclickEventListener = new LayoutOnClickListener();
-//		 Button btnNavBack = (Button) findViewById(R.id.btn_nav_event_back);
-//		 btnNavBack.setOnClickListener(onclickEventListener);
-//		 
-//		 Button btnSubmit = (Button) findViewById(R.id.btn_event_add_submit);
-//		 btnSubmit.setOnClickListener(onclickEventListener);
+        LayoutOnClickListener onclickEventListener = new LayoutOnClickListener();
+		 Button btnNavBack = (Button) findViewById(R.id.btn_nav_event_type_back);
+		 btnNavBack.setOnClickListener(onclickEventListener);
+		 
+		 Button btnSubmit = (Button) findViewById(R.id.btn_event_type_submit);
+		 btnSubmit.setOnClickListener(onclickEventListener);
 //		 
 //		 View layoutDate = findViewById(R.id.layout_event_create_date);
 //		 layoutDate.setOnClickListener(onclickEventListener);
@@ -54,29 +56,48 @@ public class EventTypeSelectorActivity extends Activity {
       
     class  ItemClickListener implements OnItemClickListener  
     {  
-    	public void onItemClick(AdapterView<?> arg0,//The AdapterView where the click happened   
-                View arg1,//The view within the AdapterView that was clicked  
-                int arg2,//The position of the view in the adapter  
-                long arg3//The row id of the item that was clicked  
+    	public void onItemClick(AdapterView<?> adapterView,//The AdapterView where the click happened   
+                View view,//The view within the AdapterView that was clicked  
+                int position,//The position of the view in the adapter  
+                long rowId//The row id of the item that was clicked
                 ) {  
-	      HashMap<String, Object> item=(HashMap<String, Object>) arg0.getItemAtPosition(arg2);  
-	      //显示所选Item的ItemText  
-	      setTitle((String)item.get("ItemText"));  
+//	      HashMap<String, Object> item=(HashMap<String, Object>) adapterView.getItemAtPosition(position);  
+//	      //显示所选Item的ItemText  
+//	      setTitle((String)item.get("ItemText"));
+    	  RelativeLayout clickedItem = (RelativeLayout)view;
+    	  View checkIcon = clickedItem.findViewById(R.id.event_type_item_check_icon);
+    	  if (checkIcon.getVisibility() == View.INVISIBLE) {
+    		  checkIcon.setVisibility(View.VISIBLE);
+    	  } else {
+    		  checkIcon.setVisibility(View.INVISIBLE);
+    	  }
     	}
     }
+    
+//    private ImageView getCheckedIcon() {
+//    	if (checkIconImageView != null) {
+//    		return checkIconImageView;
+//    	}
+//    		
+//    	Drawable drawable= getResources().getDrawable(R.drawable.goparty_event_type_checked);
+//    	ImageView imageView = new ImageView(this);
+//    	imageView.setImageDrawable(drawable);
+//    	
+//    	return checkIconImageView;
+//    }
     
     private class LayoutOnClickListener implements OnClickListener {
     	@Override
     	public void onClick(View v) {
     		switch (v.getId()) {
-//    			case R.id.layout_event_create_date:
+    			case R.id.btn_event_type_submit:
 //    				Intent intent = new Intent(EventTypeSelector.this, EventDateSelectorActivity.class);			
 //    	    		startActivity(intent);
-//    				break;
+    				break;
 //    				
-//    			case R.id.btn_nav_event_back:
-//    				finish();
-//    				break;
+    			case R.id.btn_nav_event_type_back:
+    				finish();
+    				break;
 //    				
 //    			case R.id.btn_event_add_submit:
 //    				Toast.makeText(getApplicationContext(), "btn_event_add_submit clicked", Toast.LENGTH_LONG).show();

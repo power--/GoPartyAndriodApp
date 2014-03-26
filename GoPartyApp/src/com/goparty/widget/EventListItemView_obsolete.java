@@ -1,4 +1,7 @@
-package com.goparty.app;
+package com.goparty.widget;
+/*package com.goparty.widget;
+
+import com.goparty.app.R;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -22,7 +25,7 @@ public class EventListItemView extends RelativeLayout {
         super(context, attrs);  
         // TODO Auto-generated constructor stub  
         LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        inflater.inflate(R.layout.event_list_item, this);  
+        inflater.inflate(R.layout.obsolete_event_list_item, this);  
         imageView = (ImageView)findViewById(R.id.eventImage);
         titleView = (TextView)findViewById(R.id.eventTitle);
         datetimeView = (TextView)findViewById(R.id.eventDatetime);
@@ -64,17 +67,17 @@ public class EventListItemView extends RelativeLayout {
 //    }  
 //      
 //    /**   
-//     * ÉèÖÃÍ¼Æ¬×ÊÔ´   
+//     * ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´   
 //     */    
 //    public void setImageResource(int resId) {    
 //        imageView.setImageResource(resId);    
 //    }    
 //    
 //    /**   
-//     * ÉèÖÃÏÔÊ¾µÄÎÄ×Ö   
+//     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   
 //     */    
 //    public void setTextViewText(String text) {    
 //        textView.setText(text);    
 //    }    
 
-}
+//}

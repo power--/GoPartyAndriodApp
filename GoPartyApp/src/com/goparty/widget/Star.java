@@ -1,4 +1,4 @@
-package com.goparty.widget;
+/*package com.goparty.widget;
 
 import com.goparty.app.R;
 
@@ -41,11 +41,11 @@ public class Star extends ImageView {
 		return this.star;
 	}
 	
-	/**
+	*//**
 	 * 
 	 * @param paramInt the valid value only contain 
 	 *  0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50
-	 */
+	 *//*
 	public void setStar(int paramInt)
 	{
 		star = paramInt;
@@ -164,4 +164,4 @@ public class Star extends ImageView {
 			}
 		}
 	}
-}
+}*/

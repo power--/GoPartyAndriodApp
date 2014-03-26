@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
 			// TODO Auto-generated method stub
 			View view;
 			if(convertView==null){
-				view=mInflater.inflate(R.layout.event_item_layout, parent,false);
+				view=mInflater.inflate(R.layout.obsolete_event_item_layout, parent,false);
 			}else{
 				view=convertView;
 			}
