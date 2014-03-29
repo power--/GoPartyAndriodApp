@@ -1,5 +1,9 @@
 package com.goparty.app;
 
+import java.util.ArrayList;
+
+import com.goparty.app.common.ActivityConst;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +14,9 @@ import android.app.Activity;
 import android.content.Intent;
 
 public class EventCreate extends Activity {
+	private final int EVENT_TYPE_REQUEST_TEXT = 0;
+	private final int EVENT_CONTACT_REQUEST_TEXT = 1;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,31 @@ public class EventCreate extends Activity {
 		 eventContactAddBtn.setOnClickListener(onclickEventListener);		 
     }
     
+    @Override 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if (resultCode != RESULT_OK) {
+    		//if (resultCode != RESULT_OK) {}
+    		String msg = String.format("%s; %s;", R.string.activity_intent_commu_not_ok, resultCode); 
+    		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    		return;
+    	}
+    	
+        if (requestCode == EVENT_TYPE_REQUEST_TEXT) { 
+            Bundle bundle = data.getExtras(); 
+            ArrayList<Integer> selectedCategoryIdList = bundle.getIntegerArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
+           
+            StringBuilder builder = new StringBuilder();
+			for (int id : selectedCategoryIdList) {
+				builder.append(id);
+				builder.append(";");
+			}
+            
+            Toast.makeText(this, builder, Toast.LENGTH_SHORT).show(); 
+        }else if (requestCode == EVENT_CONTACT_REQUEST_TEXT) { 
+             
+        } 
+    } 
+    
     private class LayoutOnClickListener implements OnClickListener {
     	@Override
     	public void onClick(View v) {
@@ -44,7 +76,8 @@ public class EventCreate extends Activity {
     				
     			case R.id.event_add_type_add:
     				Intent eventTypeIntent = new Intent(EventCreate.this, EventTypeSelectorActivity.class);			
-    	    		startActivity(eventTypeIntent);
+    				//startActivity(eventTypeIntent);
+    				startActivityForResult(eventTypeIntent, EVENT_TYPE_REQUEST_TEXT);
     	    		break;
     	    		
     			case R.id.event_add_contact:

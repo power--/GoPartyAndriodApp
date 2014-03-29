@@ -1,13 +1,14 @@
 package com.goparty.model;
 
 public class EventCategory {
-    private String id;
+    private int id;
     private String name;
+    private String imagePath;
     
-    public String getId() {
+    public int getId() {
             return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
             this.id = id;
     }
     public String getName() {
@@ -16,6 +17,13 @@ public class EventCategory {
     public void setName(String name) {
             this.name = name;
     }
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+    
 //    @Override
 //    public String toString() {
 //            return "EventCategory [id=" + id + ", name=" + name + "]";

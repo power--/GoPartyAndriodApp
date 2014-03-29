@@ -44,4 +44,7 @@
 	<string name="add_contact_by_photo_num">添加手机联系人</string>
 	<string name="wechat_qq_mobile">微信号/QQ号/手机号</string>
 	<string name="contact_face">头像</string>
+	
+	<!-- Error -->
+	<string name="activity_intent_commu_not_ok">通讯未成功</string>
 </resources>

@@ -2,6 +2,11 @@ package com.goparty.app;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import com.goparty.app.common.ActivityConst;
+import com.goparty.biz.EventService;
+import com.goparty.model.EventCategory;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,22 +20,30 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 
 public class EventTypeSelectorActivity extends Activity {
+	private List<EventCategory> categoryList;
+	private ArrayList<Integer> selectedCategoryIdList = new ArrayList<Integer>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_type_selector);
         
+        boolean loadDataResult = loadData();
+        
+        if (!loadDataResult) {
+        	return;
+        }
+        
         GridView gridview = (GridView) findViewById(R.id.gridview_event_types);  
         
         ArrayList<HashMap<String, Object>> listImageItem = new ArrayList<HashMap<String, Object>>();  
-        for(int i=0;i<10;i++)  
-        {
+        for(EventCategory category : categoryList) {
         	
         	HashMap<String, Object> map = new HashMap<String, Object>();  
         	map.put("ItemImage", R.drawable.goparty_event_type_default);//添加图像资源的ID  
-        	//map.put("ItemText", "NO."+String.valueOf(i));//按序号做ItemText  
-        	listImageItem.add(map);  
+        	//map.put("ItemText", "NO."+String.valueOf(i));//按序号做ItemText
+        	
+        	listImageItem.add(map);
         }  
         
         SimpleAdapter saImageItems = new SimpleAdapter(this,
@@ -44,14 +57,11 @@ public class EventTypeSelectorActivity extends Activity {
         gridview.setOnItemClickListener(new ItemClickListener());  
         
         LayoutOnClickListener onclickEventListener = new LayoutOnClickListener();
-		 Button btnNavBack = (Button) findViewById(R.id.btn_nav_event_type_back);
-		 btnNavBack.setOnClickListener(onclickEventListener);
+		Button btnNavBack = (Button) findViewById(R.id.btn_nav_event_type_back);
+		btnNavBack.setOnClickListener(onclickEventListener);
 		 
-		 Button btnSubmit = (Button) findViewById(R.id.btn_event_type_submit);
-		 btnSubmit.setOnClickListener(onclickEventListener);
-//		 
-//		 View layoutDate = findViewById(R.id.layout_event_create_date);
-//		 layoutDate.setOnClickListener(onclickEventListener);
+		Button btnSubmit = (Button) findViewById(R.id.btn_event_type_submit);
+		btnSubmit.setOnClickListener(onclickEventListener);
     }
       
     class  ItemClickListener implements OnItemClickListener  
@@ -68,8 +78,10 @@ public class EventTypeSelectorActivity extends Activity {
     	  View checkIcon = clickedItem.findViewById(R.id.event_type_item_check_icon);
     	  if (checkIcon.getVisibility() == View.INVISIBLE) {
     		  checkIcon.setVisibility(View.VISIBLE);
+    		  addSelectedItem(position);
     	  } else {
     		  checkIcon.setVisibility(View.INVISIBLE);
+    		  removeSelectedItem(position);
     	  }
     	}
     }
@@ -91,19 +103,44 @@ public class EventTypeSelectorActivity extends Activity {
     	public void onClick(View v) {
     		switch (v.getId()) {
     			case R.id.btn_event_type_submit:
-//    				Intent intent = new Intent(EventTypeSelector.this, EventDateSelectorActivity.class);			
-//    	    		startActivity(intent);
+//    				StringBuilder builder = new StringBuilder();
+//    				for (int id : selectedCategoryIdList) {
+//    					builder.append(id);
+//    					builder.append(";");
+//    				}
+//    				
+    				//Toast.makeText(getApplicationContext(), builder.toString(), Toast.LENGTH_LONG).show();
+    				
+    				Bundle bundle = new Bundle(); 
+    		        bundle.putIntegerArrayList(ActivityConst.EVENT_CATEGORY_IDS, selectedCategoryIdList); 
+    		         
+    		        setResult(RESULT_OK, getIntent().putExtras(bundle));
+    		        finish(); 
+    				
     				break;
 //    				
     			case R.id.btn_nav_event_type_back:
     				finish();
     				break;
-//    				
-//    			case R.id.btn_event_add_submit:
-//    				Toast.makeText(getApplicationContext(), "btn_event_add_submit clicked", Toast.LENGTH_LONG).show();
-//    				break;
     		}
     		
     	}
+    }
+    
+    private boolean loadData() {
+    	EventService serv = new EventService();
+    	categoryList = serv.getAllEeventCategory();
+    	
+    	return categoryList != null;
+    }
+    
+    private void removeSelectedItem(int position) {
+    	EventCategory category = categoryList.get(position);
+    	selectedCategoryIdList.remove((Integer)category.getId());
+    }
+    
+    private void addSelectedItem(int position) {
+    	EventCategory category = categoryList.get(position);
+    	selectedCategoryIdList.add(category.getId());
     }
 }
