@@ -7,7 +7,7 @@ public class Contact {
 //	private String name;
 //	private String signature;
 
-	private String id; 
+	private int id; 
     private String location; 
     private String nickName; //"ChenBo", 
     private String photo; 	//"http://t1.qlogo.cn/mbloghead/ec65faaa2a107d6438c8/100", 
@@ -33,11 +33,11 @@ public class Contact {
 	    this.setGender(gender);
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

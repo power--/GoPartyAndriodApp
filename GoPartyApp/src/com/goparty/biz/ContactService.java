@@ -20,6 +20,7 @@ public class ContactService {
 					"hello, signature " + i,
 					new Date(),
 					"M");
+			contactItem.setId(i);
 			mockedContactsList.add(contactItem);
 		}
 	}

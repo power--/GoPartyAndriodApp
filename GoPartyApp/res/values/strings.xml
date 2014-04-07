@@ -10,6 +10,7 @@
     <string name="placeholder1">placeholder1</string>
     <string name="placeholder2">placeholder2</string>
     <string name="confirm">确定</string>
+    <string name="chat">聊天</string>
     <!-- navigation menu -->
 	<string name="home">首页</string>
 	<string name="contact">联系人</string>
@@ -28,11 +29,15 @@
 	<string name="address">地址</string>
 	<string name="start">开始</string>
 	<string name="end">结束</string>
+	<string name="start_datetime">开始时间</string>
+	<string name="end_datetime">结束时间</string>
 	<string name="event_time">活动时间</string>
 	<string name="event_type">活动类型</string>
 	<string name="details">详情</string>
 	<string name="event_invite">活动邀请</string>
 	<string name="selected">选中</string>
+	<string name="day_of_week">星期</string>
+	<string name="share">分享</string>
 	<!-- contact -->
 	<string name="event_contact">联系人</string>
 	<string name="new_contact">新的朋友</string>
@@ -44,7 +49,8 @@
 	<string name="add_contact_by_photo_num">添加手机联系人</string>
 	<string name="wechat_qq_mobile">微信号/QQ号/手机号</string>
 	<string name="contact_face">头像</string>
-	
+	<!-- chat -->
+	<string name="send">发送</string>
 	<!-- Error -->
 	<string name="activity_intent_commu_not_ok">通讯未成功</string>
 </resources>

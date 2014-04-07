@@ -1,3 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/goparty_top_bg"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp" >
+	    <Button
+		    android:id="@+id/btn_nav_event_details_back"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/goparty_icon_return"
+		    android:contentDescription="@string/go_back" />
+	    <TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/event" />
+	</LinearLayout>
+    
+    <include
+        android:id="@+id/event_details_nav_layout"
+        layout="@layout/event_details_nav" />
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#ffcccccc" />
+    <FrameLayout
+        android:id="@+id/event_details_panel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </FrameLayout>
+
+</LinearLayout>
+<!--
 <?xml version="1.0" encoding="utf-8"?> 
 <TabHost android:id="@android:id/tabhost" android:layout_width="fill_parent" 
     android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"> 
@@ -18,4 +63,5 @@
             android:padding="5dp"   
             /> 
     </LinearLayout> 
-</TabHost> 
+</TabHost>
+-->

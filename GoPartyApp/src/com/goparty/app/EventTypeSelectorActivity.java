@@ -115,11 +115,11 @@ public class EventTypeSelectorActivity extends Activity {
     		        bundle.putIntegerArrayList(ActivityConst.EVENT_CATEGORY_IDS, selectedCategoryIdList); 
     		         
     		        setResult(RESULT_OK, getIntent().putExtras(bundle));
-    		        finish(); 
-    				
+    		        finish();
     				break;
 //    				
     			case R.id.btn_nav_event_type_back:
+    				setResult(RESULT_CANCELED);
     				finish();
     				break;
     		}

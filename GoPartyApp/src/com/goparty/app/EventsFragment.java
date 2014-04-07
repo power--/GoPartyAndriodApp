@@ -19,17 +19,28 @@ public class EventsFragment extends Fragment {
 		View eventsLayout = inflater.inflate(R.layout.events_layout, container, false);
 			
 		Button btnNavCreate = (Button) eventsLayout.findViewById(R.id.btn_nav_event_create);
-
 		btnNavCreate.setOnClickListener(new CreateOnClick());
-
+		
+		Button btnDetailsDummy = (Button) eventsLayout.findViewById(R.id.btn_event_details_dummy);
+		btnDetailsDummy.setOnClickListener(new CreateOnClick());
+		
 		return eventsLayout;		
 	}
 	
 	private class CreateOnClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-        	Intent intent = new Intent (getActivity(), EventCreate.class);			
-    		startActivity(intent);
+        	switch(v.getId()) {
+	        	case R.id.btn_nav_event_create:
+	        		Intent intent = new Intent (getActivity(), EventCreateActivity.class);			
+	        		startActivity(intent);
+	        		break;
+	        	case R.id.btn_event_details_dummy:
+	        		Intent intent2 = new Intent (getActivity(), EventDetailsActivity.class);			
+	        		startActivity(intent2);
+	        		break;
+        	}
+        	
         }
 	}
 }

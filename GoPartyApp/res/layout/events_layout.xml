@@ -47,6 +47,12 @@
 	    	android:layout_height="wrap_content"
 	    	android:text="placeholder">
 	    </TextView>
+	    <Button
+		    android:id="@+id/btn_event_details_dummy"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/goparty_icon_add"
+		    android:contentDescription="@string/add" />
 <!--android:gravity="center_vertical"  -->
 <!-- 
 		<EditText
