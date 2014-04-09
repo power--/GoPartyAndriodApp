@@ -13,6 +13,8 @@ public class EventDetailsShareFragment  extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		// return super.onCreateView(inflater, container, savedInstanceState);
-		return inflater.inflate(R.layout.event_details_share, container, false);
+		
+		//return inflater.inflate(R.layout.event_details_share, container, false);
+		return inflater.inflate(R.layout.event_share_item, container, false);
 	}
 }

@@ -8,6 +8,8 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.goparty.app.common.WebServiceConst;
+import com.goparty.model.LoginResponse;
 import com.goparty.model.User;
 import com.goparty.net.JsonHttpClient;
 
@@ -70,5 +72,21 @@ public class UserService {
 	
 	public boolean ValidateUserName(String userName) {
 		return userName.length() >= 3;
+	}
+
+	public String Login() {
+		try {
+			LoginResponse result = JsonHttpClient.get(WebServiceConst.LoginUrl, LoginResponse.class);
+			return result.getStatus();
+		} catch (MalformedURLException urlEx) {
+			//to-do
+		} catch (JsonParseException parseEx) {		
+			//to-do
+		} catch (JsonMappingException mappingEx) {
+			//to-do
+		} catch (IOException ioEx) {
+			//to-do
+		}
+		return "";
 	}
 }

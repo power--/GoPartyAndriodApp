@@ -11,6 +11,7 @@
     <string name="placeholder2">placeholder2</string>
     <string name="confirm">确定</string>
     <string name="chat">聊天</string>
+    <string name="time">时间</string>
     <!-- navigation menu -->
 	<string name="home">首页</string>
 	<string name="contact">联系人</string>
@@ -38,6 +39,7 @@
 	<string name="selected">选中</string>
 	<string name="day_of_week">星期</string>
 	<string name="share">分享</string>
+	<string name="comment">评论</string>
 	<!-- contact -->
 	<string name="event_contact">联系人</string>
 	<string name="new_contact">新的朋友</string>
