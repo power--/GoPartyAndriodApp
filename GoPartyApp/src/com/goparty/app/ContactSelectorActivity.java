@@ -1,44 +1,40 @@
 package com.goparty.app;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
 
 import com.goparty.adapter.ContactSelectorAdapter;
 import com.goparty.adapter.FaceGridViewAdapter;
 import com.goparty.app.common.ActivityConst;
-import com.goparty.app.common.ServerListener;
 import com.goparty.biz.ContactService;
 import com.goparty.model.Contact;
 import com.goparty.widget.ContactSelectorItem;
 
-public class ContactSelectorActivity extends Activity implements ServerListener<Contact> {
+public class ContactSelectorActivity extends Activity {
 	private final int GRIDVIEW_COLUMN_WIDTH = 80;
 	private final int GRIDVIEW_COLUMN_SPACING = 4;
 	
-	private View loadingView;
-	private boolean isEnd = false;
-	private boolean isLoadingRemoved = false;
+//	private View loadingView;
+//	private boolean isEnd = false;
+//	private boolean isLoadingRemoved = false;
 	
 	private Button btnSubmit;
 	
 	private ListView contactListView;
-	private ListAdapter resultAdapter;
+	private ContactSelectorAdapter resultAdapter;
 	
 	private GridView faceGridView;
 	private FaceGridViewAdapter faceGridViewAdapter;
@@ -52,33 +48,8 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
         super.onCreate(contactSelectorInstanceState);
         initLayout();
 		
-        ContactService dataServ = new ContactService();
-        dataServ.getContacts(ContactSelectorActivity.this, 0, 0);
-        
         initContactListView();
         initSelectionGridView();
-	}
-
-	@Override
-	public void serverDataArrived(List<Contact> list, boolean isEnd) {
-		this.isEnd = isEnd;
-		
-		if (list != null && list.size() > 0) { 
-			for (Contact item : list) {
-				contactDataList.add(item);
-			}
-		}
-		
-		Message localMessage = new Message();
-		if(!isEnd) {
-			localMessage.what = 1;
-		}
-		else
-		{
-			localMessage.what = 2;
-		}
-		
-		this.handler.sendMessage(localMessage);
 	}
 	
 	private void initLayout() {
@@ -90,6 +61,18 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
 		
 		btnSubmit = (Button) findViewById(R.id.btn_event_contact_submit);
 		btnSubmit.setOnClickListener(buttonOnclickedListener);
+		
+		String queryRes = "";
+		DataQuery dataQuery = new DataQuery();
+		try {
+			queryRes = dataQuery.execute("").get();
+		} catch (InterruptedException e) {
+			queryRes = e.getMessage();
+		} catch (ExecutionException e) {
+			queryRes = e.getMessage();
+		}
+		
+		HandleDataQueryResult(queryRes);
 	}
 	
 	private void initContactListView() {
@@ -97,21 +80,15 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
         resultAdapter = new ContactSelectorAdapter(this, contactDataList);
         contactListView.setAdapter(resultAdapter);
         
-        loadingView = LayoutInflater.from(this).inflate(R.layout.list_footer, null);
-        contactListView.addFooterView(loadingView);
+        //loadingView = LayoutInflater.from(this).inflate(R.layout.list_footer, null);
+        //contactListView.addFooterView(loadingView);
         
         contactListView.setOnItemClickListener(contactlistItemOnClickListener);
 	}
 	
 	private void initSelectionGridView() {
 		faceGridView = (GridView) findViewById(R.id.faceGridView);
-        
-//        for(int i=0;i<0;i++)  
-//        {
-//        faceDataList.add(new Contact("location" + i, "nickName" + i,
-//				"photo" + i, "signature" + i,	new Date(), "M"));
-//        }
-        
+                
         faceGridView.setColumnWidth(GRIDVIEW_COLUMN_WIDTH);
 		faceGridView.setHorizontalSpacing(GRIDVIEW_COLUMN_SPACING);
 		faceGridView.setStretchMode(GridView.NO_STRETCH);
@@ -131,10 +108,10 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
 			
 			if (isSelected) {
 				faceDataList.add(clickedItemData);
-				selectedContactIdsList.add(clickedItemData.getId());
+				selectedContactIdsList.add(Integer.parseInt(clickedItemData.getId()));
 			} else {
 				faceDataList.remove(clickedItemData);
-				selectedContactIdsList.remove((Integer)clickedItemData.getId());
+				selectedContactIdsList.remove(Integer.parseInt(clickedItemData.getId()));
 			}
 			
 			resetFaceGridViewParam();
@@ -174,7 +151,7 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
     	}
     }
 	
-	Handler handler = new Handler() 
+	/*Handler handler = new Handler() 
 	{
 		public void handleMessage(Message paramMessage) 
 		{
@@ -198,5 +175,54 @@ public class ContactSelectorActivity extends Activity implements ServerListener<
 				loadingView.setVisibility(View.VISIBLE);
 			}
 		}
-	};
+	};*/
+	
+	private class DataQuery extends AsyncTask<String, Integer, String> 
+    {
+        @Override  
+        protected void onPreExecute() 
+        {  
+        }  
+          
+        @Override  
+        protected String doInBackground(String... params) 
+        {  
+            try 
+            {
+            	ArrayList<Contact> arrayList = new ContactService().getContacts();
+            	if (arrayList != null && arrayList.size() > 0) { 
+        			for (Contact item : arrayList) {
+        				contactDataList.add(item);
+        			}
+        		}
+            } 
+            catch (Exception e)
+            {
+            	e.printStackTrace();
+            	return "error: " + e.getMessage();
+            }
+            
+            return "ok";
+        }  
+          
+        @Override  
+        protected void onProgressUpdate(Integer... progresses) 
+        {  
+        }  
+          
+        @Override  
+        protected void onPostExecute(String result) 
+        {
+        	resultAdapter.notifyDataSetChanged();
+        }  
+          
+        @Override  
+        protected void onCancelled() 
+        {  
+        }  
+    }
+	
+	private void HandleDataQueryResult(String result) {
+    	Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+    }
 }

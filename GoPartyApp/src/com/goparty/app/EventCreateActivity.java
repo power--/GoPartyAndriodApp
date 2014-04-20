@@ -76,10 +76,10 @@ public class EventCreateActivity extends Activity {
     	
         if (requestCode == EVENT_TYPE_REQUEST_TEXT) { 
             Bundle bundle = data.getExtras(); 
-            ArrayList<Integer> selectedCategoryIdList = bundle.getIntegerArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
+            ArrayList<String> selectedCategoryIdList = bundle.getStringArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
            
             StringBuilder builder = new StringBuilder();
-			for (int id : selectedCategoryIdList) {
+			for (String id : selectedCategoryIdList) {
 				builder.append(id);
 				builder.append(";");
 			}

@@ -17,16 +17,23 @@ public class ContactListAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private List<Contact> contactDataList;
+	
+	public int count = 0;
 
 	public ContactListAdapter(Context context, List<Contact> contactDataList) {
 		this.mInflater = LayoutInflater.from(context);
 		this.contactDataList = contactDataList;
+		
+		if (contactDataList != null) {
+			count = contactDataList.size();
+		}
 	}
-
+	
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return contactDataList.size();
+		//return contactDataList.size();
+		return count;
 	}
 
 	@Override

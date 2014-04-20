@@ -15,10 +15,12 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.goparty.app.common.UserContext;
+
 public class JsonHttpClient {
 	private static final String DEFAULT_CHARSET = "UTF-8";
 	private static final int TIMEOUT = 60000;
-	private Map<String, String> requestProperties = new HashMap<String, String>();//User-Agent;access_token
+	//private static Map<String, String> commonRequestProperties = new HashMap<String, String>();//User-Agent;access_token
 	
 	public static <T> T get(String url, Class<T> valueType) throws 
 		MalformedURLException, 
@@ -26,12 +28,12 @@ public class JsonHttpClient {
 		JsonParseException,
 		JsonMappingException {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-	    
+		
 	    try {
+	    	setRequestCommonProperty(conn);
+	    	
 	    	conn.setRequestMethod("GET");
 	    	//conn.setDoOutput(true);
-	    	conn.setConnectTimeout(TIMEOUT);
-	    	conn.setReadTimeout(TIMEOUT);
 	    	
 	    	int code = conn.getResponseCode();
 	    	//conn.getHeaderField("chartset");
@@ -186,11 +188,15 @@ public class JsonHttpClient {
 		}
 	}
 		
-	public void setRequestProperty(String field, String value) {
-//		httpurlconnection.setRequestProperty("Content-type", "text/html"); 
-		requestProperties.put(field, value);
+	public static void setRequestCommonProperty(HttpURLConnection conn) {
+		conn.setRequestProperty("token", UserContext.getToken());
+		conn.setRequestProperty("charset", "utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		
+		conn.setConnectTimeout(TIMEOUT);
+    	conn.setReadTimeout(TIMEOUT);
 	}
-	
+
 	private static String streamToString(InputStream stream) throws IOException {
 		StringBuffer buf = new StringBuffer();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(stream, DEFAULT_CHARSET));

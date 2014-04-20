@@ -9,8 +9,10 @@ import com.goparty.app.common.ServerListener;
 import com.goparty.biz.ContactService;
 import com.goparty.model.Contact;
 
+import android.R.string;
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,9 +31,11 @@ public class ContactsFragment extends Fragment implements ServerListener<Contact
 	private boolean isEnd = false;
 	private boolean isLoadingRemoved = false;
 	
-	ListAdapter resultAdapter = null;
+	ContactListAdapter resultAdapter = null;
 	private ListView list;
 	private List<Contact> contactDataList = new ArrayList<Contact>();
+	
+	private ContactService contactService = new ContactService();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,12 +52,14 @@ public class ContactsFragment extends Fragment implements ServerListener<Contact
         
         resultAdapter = new ContactListAdapter(getActivity().getApplicationContext(), contactDataList);
         
-        ContactService dataServ = new ContactService();
-        dataServ.getContacts(ContactsFragment.this, 0, 0);
+        //ContactService dataServ = new ContactService();
+        //dataServ.getContacts(ContactsFragment.this, 0, 0);
+        DataQuery dataQuery = new DataQuery();
+        dataQuery.execute("");
         
         loadingView = LayoutInflater.from(getActivity()).inflate(R.layout.list_footer, null);
         
-        list.addFooterView(loadingView);
+//        list.addFooterView(loadingView);
         list.setAdapter(resultAdapter);
         list.setOnItemClickListener(mOnClickListener);
         
@@ -186,5 +192,93 @@ public class ContactsFragment extends Fragment implements ServerListener<Contact
 			}
 		}
 	};
-
+	
+	private class DataQuery extends AsyncTask<String, Integer, String> 
+    {
+        //onPreExecute方法在execute()后执行
+        @Override  
+        protected void onPreExecute() 
+        {  
+            //Log.i(TAG, "onPreExecute() enter");  
+            //mShowLogTextView.setText("onPreExecute。。。begin downLoad");  
+        }  
+          
+        //doInBackground方法内部执行后台任务,不能在里面更新UI，否则有异常。
+        @Override  
+        protected String doInBackground(String... params) 
+        {  
+            //Log.i(TAG, "doInBackground(String... params) enter");  
+            
+        	
+//            URL imageUrl=null;
+            try 
+            {
+//                imageUrl=new URL(params[0]);
+            	ArrayList<Contact> arrayList = contactService.getContacts();
+            	if (arrayList != null && arrayList.size() > 0) { 
+        			for (Contact item : arrayList) {
+        				contactDataList.add(item);
+        			}
+        		}
+        		
+            	contactDataList = arrayList;
+            	
+            } 
+//            catch (MalformedURLException e)
+            catch (Exception e)
+            {
+                e.printStackTrace();
+//                Log.e(TAG, e.getMessage());
+            }
+//            try
+//            {
+//                //使用HttpURLConnection打开连接
+//                HttpURLConnection urlConn=(HttpURLConnection)imageUrl.openConnection();
+//                urlConn.setDoInput(true);
+//                urlConn.connect();
+//                //将得到的数据转化成InputStream
+//                InputStream is=urlConn.getInputStream();
+//                //将InputStream转换成Bitmap
+//                mDownLoadBtBitmap=BitmapFactory.decodeStream(is);
+//                is.close();
+//                //不能在这里更新UI,否则有异常******
+//                //mNetImageView.setImageBitmap(bitmap);
+//            }catch(IOException e)
+//            {
+//                Log.e(TAG,e.getMessage());
+//            }
+            
+            return "ok";
+        }  
+          
+        //onProgressUpdate方法用于更新进度信息  
+        @Override  
+        protected void onProgressUpdate(Integer... progresses) 
+        {  
+//            Log.i(TAG, "onProgressUpdate(Integer... progresses) enter");  
+// 
+//            mShowLogTextView.setText("onProgressUpdate Downloading...");  
+        }  
+          
+        //onPostExecute用于doInBackground执行完后，更新界面UI。
+        //result是doInBackground返回的结果
+        @Override  
+        protected void onPostExecute(String result) 
+        {  
+//            Log.i(TAG, "onPostExecute(Result result) called");  
+//            mShowLogTextView.setText("Down load finish result="+result);  
+//              
+//            mNetImageView.setImageBitmap(mDownLoadBtBitmap);
+        	resultAdapter.count += contactDataList.size();
+        	resultAdapter.notifyDataSetChanged();
+        }  
+          
+        //onCancelled方法用于取消Task执行，更新UI
+        @Override  
+        protected void onCancelled() 
+        {  
+//            Log.i(TAG, "onCancelled() called");  
+//            mShowLogTextView.setText("onCancelled");  
+        }  
+    }
 }

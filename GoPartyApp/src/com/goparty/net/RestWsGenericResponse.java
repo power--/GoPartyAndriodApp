@@ -1,10 +1,11 @@
-package com.goparty.model;
+package com.goparty.net;
 
-public class RestWsResponse {
+public class RestWsGenericResponse<T> {
 	private int code;
 	private String status;
 	private String message;
 	//private String data;
+	private T data;
 	
 	public int getCode() {
 		return code;
@@ -28,6 +29,14 @@ public class RestWsResponse {
 	
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
 	}
 
 //	public String getData() {

@@ -3,12 +3,14 @@ package com.goparty.app;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.goparty.app.common.ActivityConst;
 import com.goparty.biz.EventService;
 import com.goparty.model.EventCategory;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,42 +20,43 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventTypeSelectorActivity extends Activity {
-	private List<EventCategory> categoryList;
-	private ArrayList<Integer> selectedCategoryIdList = new ArrayList<Integer>();
+	//private List<EventCategory> categoryList = new ArrayList<EventCategory>();
+	private ArrayList<HashMap<String, Object>> gridViewItemDataList = new ArrayList<HashMap<String, Object>>();
+	private ArrayList<String> selectedCategoryIdList = new ArrayList<String>();
+	private EventService eventService = new EventService();
+	SimpleAdapter simpleAdapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_type_selector);
-        
-        boolean loadDataResult = loadData();
-        
-        if (!loadDataResult) {
-        	return;
-        }
-        
-        GridView gridview = (GridView) findViewById(R.id.gridview_event_types);  
-        
-        ArrayList<HashMap<String, Object>> listImageItem = new ArrayList<HashMap<String, Object>>();  
-        for(EventCategory category : categoryList) {
-        	
-        	HashMap<String, Object> map = new HashMap<String, Object>();  
-        	map.put("ItemImage", R.drawable.goparty_event_type_default);//添加图像资源的ID  
-        	//map.put("ItemText", "NO."+String.valueOf(i));//按序号做ItemText
-        	
-        	listImageItem.add(map);
-        }  
-        
-        SimpleAdapter saImageItems = new SimpleAdapter(this,
-                                                  listImageItem,
-                                                  R.layout.event_type_item, 
-                                                  new String[] {"ItemImage"},   
-                                                  new int[] {R.id.event_type_item_image});  
 
-        gridview.setAdapter(saImageItems);  
+        GridView gridview = (GridView) findViewById(R.id.gridview_event_types);  
+                
+        simpleAdapter = new SimpleAdapter(this, 
+				gridViewItemDataList,
+				R.layout.event_type_item, new String[] { "Id", "Name", "ItemImage" },
+				new int[] { R.id.event_type_item_id, R.id.event_type_item_name, R.id.event_type_item_image });
+
+        gridview.setAdapter(simpleAdapter);  
   
+        DataQuery dataQuery = new DataQuery();
+        
+        String dataQueryResultString = "";
+        try {
+        	dataQueryResultString = dataQuery.execute("").get();
+		} catch (InterruptedException e) {
+			dataQueryResultString = e.getMessage();
+		} catch (ExecutionException e) {
+			dataQueryResultString = e.getMessage();
+		}
+        
+        HandleDataQueryResult(dataQueryResultString);
+        
         gridview.setOnItemClickListener(new ItemClickListener());  
         
         LayoutOnClickListener onclickEventListener = new LayoutOnClickListener();
@@ -76,12 +79,14 @@ public class EventTypeSelectorActivity extends Activity {
 //	      setTitle((String)item.get("ItemText"));
     	  RelativeLayout clickedItem = (RelativeLayout)view;
     	  View checkIcon = clickedItem.findViewById(R.id.event_type_item_check_icon);
+    	  TextView textViewId = (TextView)clickedItem.findViewById(R.id.event_type_item_id);
+    	  String categoryId = textViewId.getText().toString();
     	  if (checkIcon.getVisibility() == View.INVISIBLE) {
     		  checkIcon.setVisibility(View.VISIBLE);
-    		  addSelectedItem(position);
+    		  addSelectedItem(categoryId);
     	  } else {
     		  checkIcon.setVisibility(View.INVISIBLE);
-    		  removeSelectedItem(position);
+    		  removeSelectedItem(categoryId);
     	  }
     	}
     }
@@ -112,7 +117,7 @@ public class EventTypeSelectorActivity extends Activity {
     				//Toast.makeText(getApplicationContext(), builder.toString(), Toast.LENGTH_LONG).show();
     				
     				Bundle bundle = new Bundle(); 
-    		        bundle.putIntegerArrayList(ActivityConst.EVENT_CATEGORY_IDS, selectedCategoryIdList); 
+    		        bundle.putStringArrayList(ActivityConst.EVENT_CATEGORY_IDS, selectedCategoryIdList); 
     		         
     		        setResult(RESULT_OK, getIntent().putExtras(bundle));
     		        finish();
@@ -127,20 +132,69 @@ public class EventTypeSelectorActivity extends Activity {
     	}
     }
     
-    private boolean loadData() {
-    	EventService serv = new EventService();
-    	categoryList = serv.getAllEeventCategory();
-    	
-    	return categoryList != null;
+    private void addSelectedItem(String categoryId) {
+    	if (!selectedCategoryIdList.contains(categoryId)) {
+    		selectedCategoryIdList.add(categoryId);
+    	}
     }
     
-    private void removeSelectedItem(int position) {
-    	EventCategory category = categoryList.get(position);
-    	selectedCategoryIdList.remove((Integer)category.getId());
+    private void removeSelectedItem(String categoryId) {
+    	selectedCategoryIdList.remove(categoryId);
     }
     
-    private void addSelectedItem(int position) {
-    	EventCategory category = categoryList.get(position);
-    	selectedCategoryIdList.add(category.getId());
+    private class DataQuery extends AsyncTask<String, Integer, String> 
+    {
+        @Override  
+        protected void onPreExecute() 
+        {  
+        }  
+          
+        @Override  
+        protected String doInBackground(String... params) 
+        {  
+            try 
+            {
+            	List<EventCategory> cateList = eventService.getAllEeventCategory();
+            	if (cateList != null && cateList.size() > 0) {
+            		//gridViewItemDataList.clear();
+        			for (EventCategory item : cateList) {
+        				HashMap<String, Object> map = new HashMap<String, Object>();
+        				map.put("Id", item.getId());
+        	        	map.put("Name", item.getName());
+        	        	map.put("ItemImage", R.drawable.goparty_event_type_default);
+        	        	
+        	        	gridViewItemDataList.add(map);
+        			}
+        		}
+            } 
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return "error: " + e.getMessage();
+            }
+            
+            return "ok";
+        }  
+          
+        @Override  
+        protected void onProgressUpdate(Integer... progresses) 
+        {  
+        }  
+          
+        @Override  
+        protected void onPostExecute(String result) 
+        {  
+        	//simpleAdapter.count += contactDataList.size();
+        	simpleAdapter.notifyDataSetChanged();
+        }  
+          
+        @Override  
+        protected void onCancelled() 
+        {  
+        }  
+    }
+    
+    private void HandleDataQueryResult(String result) {
+    	Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
     }
 }

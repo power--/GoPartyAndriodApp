@@ -1,32 +1,29 @@
 package com.goparty.biz;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import com.goparty.app.common.ServerListener;
+import com.goparty.data.ContactDataService;
 import com.goparty.model.Contact;
 
 public class ContactService {
-	private List<Contact> mockedContactsList;
+//	private List<Contact> mockedContactsList;
+	ContactDataService dataService;
 	
 	public ContactService() {
-		mockedContactsList = new ArrayList<Contact>();
-		for (int i = 0; i < 50; i++) {
-			Contact contactItem = new Contact(
-					"location" + i,
-					"nickName" + i,
-					"photoUrl" + i,
-					"hello, signature " + i,
-					new Date(),
-					"M");
-			contactItem.setId(i);
-			mockedContactsList.add(contactItem);
-		}
+		//mockData();
+		dataService = new ContactDataService();
+	}
+	
+	//public ArrayList<Contact> getContacts(int take, int skip) {
+	public ArrayList<Contact> getContacts() {
+		return dataService.getFriendsData();
 	}
 	
 	public void getContacts(final ServerListener<Contact> listener, int take, int skip) {
-		listener.serverDataArrived(mockedContactsList, true);
+		//ArrayList<Contact> contacts = new ArrayList<>();
+		
+		//listener.serverDataArrived(dataService.getFriendsData(), true);
 		
 //		try {
 //			Thread.sleep(1000);
@@ -52,4 +49,22 @@ public class ContactService {
 //		listener.serverDataArrived(resultList, false);
 //		
 	}
+	
+	/*private void mockData() {
+		mockedContactsList = new ArrayList<Contact>();
+		for (int i = 0; i < 50; i++) {
+			Contact contactItem = new Contact(
+					"id" + i,
+					"nickName" + i,
+					10000000 + i * 100000,
+					"M",
+					"location" + i,
+					"signature" + i,
+					"photo" + i,
+					"remarkName" + i,
+					null);
+			contactItem.setId(i + "");
+			mockedContactsList.add(contactItem);
+		}
+	}*/
 }
