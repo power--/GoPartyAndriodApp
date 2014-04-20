@@ -1,6 +1,6 @@
 package com.goparty.biz;
 
-import java.io.IOException;
+/*import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.util.UUID;
@@ -17,8 +17,9 @@ import com.goparty.model.LoginResponse;
 import com.goparty.model.User;
 import com.goparty.net.JsonHttpClient;
 import com.goparty.net.RestWsGenericResponse;
-
+*/
 public class UserService {
+	/*
 	private final String getUserUrlPattern = "http://goparty.cloudapp.net/cxf/rest/user/{0}";
 	private final String addUserUrlPattern = "http://goparty.cloudapp.net/cxf/rest/user";
 	
@@ -124,4 +125,4 @@ public class UserService {
 //		JavaType type = mapper.getTypeFactory().constructParametricType(Data.class, T.class); 
 //		return mapper.readValue(json, type); 
 //	} 
-}
+*/}

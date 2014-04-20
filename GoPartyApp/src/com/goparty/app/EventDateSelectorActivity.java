@@ -129,11 +129,14 @@ public class EventDateSelectorActivity  extends Activity {
     				break;
     				
     			case R.id.btn_event_datetime_submit:
-    				ArrayList<String> selectedDateList = new ArrayList<String>();
-    				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    		    	
-    				selectedDateList.add(dateFormat.format(startDatetime.getTime()));
-    				selectedDateList.add(dateFormat.format(endDatetime.getTime()));
+    				//ArrayList<String> selectedDateList = new ArrayList<String>();
+    				//SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    				long[] selectedDateList = new long[2];
+    				
+//    				selectedDateList.add(dateFormat.format(startDatetime.getTime()));
+//    				selectedDateList.add(dateFormat.format(endDatetime.getTime()));
+    				selectedDateList[0] = startDatetime.getTimeInMillis();
+    				selectedDateList[1] = endDatetime.getTimeInMillis();
     				
     				if (isStartDatetimeEnabled) {
     					startDatetime = ConvertTo(wheelMain.getTime());
@@ -144,7 +147,7 @@ public class EventDateSelectorActivity  extends Activity {
     				}
     				
     				Bundle bundle = new Bundle(); 
-    		        bundle.putStringArrayList(ActivityConst.EVENT_DATE_IDS, selectedDateList); 
+    		        bundle.putLongArray(ActivityConst.EVENT_DATE_IDS, selectedDateList); 
     		         
     		        setResult(RESULT_OK, getIntent().putExtras(bundle));
     		        finish();

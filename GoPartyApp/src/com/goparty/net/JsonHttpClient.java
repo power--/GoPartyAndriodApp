@@ -7,10 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -31,12 +28,8 @@ public class JsonHttpClient {
 		
 	    try {
 	    	setRequestCommonProperty(conn);
-	    	
-	    	conn.setRequestMethod("GET");
-	    	//conn.setDoOutput(true);
-	    	
+	    	conn.setRequestMethod("GET");	    	
 	    	int code = conn.getResponseCode();
-	    	//conn.getHeaderField("chartset");
 	    	
 	    	if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {
 	    		InputStream errorStream = conn.getErrorStream();
@@ -62,7 +55,7 @@ public class JsonHttpClient {
 	    }
 	}
 	
-	public static String get(String url) throws MalformedURLException, IOException{
+	/*public static String get(String url) throws MalformedURLException, IOException{
 	    HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 	    
 	    try {
@@ -97,9 +90,9 @@ public class JsonHttpClient {
 	    	  conn.disconnect();
 	    }
 	    
-	}
+	}*/
 	
-	public static String post(String url, byte[] content) throws IOException {
+/*	public static String post(String url, byte[] content) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();		
 		try {
 	    		conn.setRequestMethod("POST");
@@ -141,34 +134,22 @@ public class JsonHttpClient {
 	
 	public static String post(String url, String content) throws IOException {
 		return post(url, content.getBytes());
-	}
+	}*/
 	
-	public static boolean post(String url, Object value) throws
-		IOException,
-		JsonGenerationException,
-		JsonMappingException {		
-		ObjectMapper mapper = new ObjectMapper();
-		byte[] content = mapper.writeValueAsBytes(value);
-		//String content = mapper.writeValueAsString(value);
+	public static RestWsResponse post(String url, String requestBody) throws IOException {
 		
-//		content = "{\"nickName\": \"rongji\", \"password\": \"password1\",\"userName\": \"rongjisu\" }";
-//		content = "{\"id\":null, \"nickName\": \"rongji\", \"password\": \"password1\",\"userName\": \"rongjisu\" }";
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		
 		try {
 	    		conn.setRequestMethod("POST");
-	    		conn.setRequestProperty("Content-type","application/json");
-	    		//conn.setDoOutput(true);
-	    		conn.setConnectTimeout(TIMEOUT);
-	    		conn.setReadTimeout(TIMEOUT);
 	    		
-	    		//conn.getOutputStream().write(content.getBytes());
-	    		conn.getOutputStream().write(content);
+	    		setRequestCommonProperty(conn);
+	    		
+	    		conn.getOutputStream().write(requestBody.getBytes());
 	    		conn.getOutputStream().flush();
 	    		conn.getOutputStream().close();	    
 	    	
 	    		int code = conn.getResponseCode();
-	    		//conn.getHeaderField("chartset");
 	    	
 		    	if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {
 		    		InputStream errorStream = conn.getErrorStream();
@@ -181,7 +162,14 @@ public class JsonHttpClient {
 		    		}
 		    	}
 		    	
-		    	return true;
+		    	InputStream responseStream = conn.getInputStream();
+		    	try {
+		    		ObjectMapper mapper = new ObjectMapper();
+		    		
+		    		return mapper.readValue(responseStream, RestWsResponse.class);
+	    		} finally {
+	    			responseStream.close();
+	    		}
 	    	} finally {
 		    	if(conn!=null)
 		    	  conn.disconnect();
@@ -192,6 +180,7 @@ public class JsonHttpClient {
 		conn.setRequestProperty("token", UserContext.getToken());
 		conn.setRequestProperty("charset", "utf-8");
 		conn.setRequestProperty("Accept", "application/json");
+		conn.setRequestProperty("Content-type","application/json");
 		
 		conn.setConnectTimeout(TIMEOUT);
     	conn.setReadTimeout(TIMEOUT);

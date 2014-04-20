@@ -8,9 +8,8 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.goparty.app.common.JsonSerializer;
+import com.goparty.app.common.JsonUtil;
 import com.goparty.model.Contact;
-import com.goparty.model.ContactGroup;
 import com.goparty.net.JsonHttpClient;
 import com.goparty.net.RestWsResponse;
 
@@ -21,34 +20,26 @@ public class ContactDataService {
 			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
 				return rep.getData();
 			}
-			
-			return "";
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.JSON_ERROR + ": " + e.getMessage();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.JSON_ERROR + ": " + e.getMessage();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.HTTP_ERROR + ": " + e.getMessage();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.ERROR + ": " + e.getMessage();
 		}
 		
-		return "";
+		return WebServiceConst.ERROR;
 	}
 	
 	public ArrayList<Contact> getFriendsData() {
 		String jsonResult = getFriendsJsonData();
-		if (jsonResult == "") {
+		if (jsonResult.startsWith(WebServiceConst.ERROR)) {
 			return new ArrayList<Contact>();
 		}
-		
 //		jsonResult = "[{\"signature\":\"signature1\",\"gender\":\"gender1\",\"groups\":[{\"id\":\"id1\",\"name\":\"name1\",\"ownerId\":\"owner1\"}],\"id\":\"id1\",\"location\":\"loc1\",\"nickName\":\"nickname1\",\"photo\":\"photo1\",\"remarkName\":\"remark1\",\"birthdate\":1111}]";
-		
-		return JsonSerializer.deserialize(jsonResult, new TypeReference<ArrayList<Contact>>(){});
+		return JsonUtil.deserialize(jsonResult, new TypeReference<ArrayList<Contact>>(){});
 	}
 	
 	/*public String setFrends() {

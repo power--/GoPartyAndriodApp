@@ -1,13 +1,22 @@
 package com.goparty.app;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import com.goparty.app.common.ActivityConst;
+import com.goparty.app.common.UserContext;
+import com.goparty.biz.EventService;
+import com.goparty.model.EventCategory;
+import com.goparty.model.EventCreateMembersRequest;
+import com.goparty.model.EventCreateOwnerRequest;
+import com.goparty.model.EventCreateRequest;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +29,10 @@ public class EventCreateActivity extends Activity {
 	private final int EVENT_DATE_REQUEST_TEXT = 2;
 	private TextView typeCountTextView;
 	private TextView contactCountTextView;
+	private long startDate;
+	private long endDate;
+	private ArrayList<EventCategory> eventCategories = new ArrayList<EventCategory>();
+	private ArrayList<Integer> eventMembers = new ArrayList<Integer>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,10 +67,21 @@ public class EventCreateActivity extends Activity {
     				break;
     				
     			case R.id.btn_event_add_submit:
-    				Toast.makeText(getApplicationContext(), "btn_event_add_submit clicked", Toast.LENGTH_LONG).show();
+    				//Toast.makeText(getApplicationContext(), "btn_event_add_submit clicked", Toast.LENGTH_LONG).show();
+    				if (validateInput()) {
+    					PostDataTask postTask = new PostDataTask();
+    					String result;
+    					try {
+							result = postTask.execute(fillRequest()).get();
+						} catch (InterruptedException e) {
+							result = "error: " + e.getMessage();
+						} catch (ExecutionException e) {
+							result = "error: " + e.getMessage();
+						}
+    					Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+    				}
     				break;
     		}
-    		
     	}
     }
     
@@ -77,14 +101,23 @@ public class EventCreateActivity extends Activity {
         if (requestCode == EVENT_TYPE_REQUEST_TEXT) { 
             Bundle bundle = data.getExtras(); 
             ArrayList<String> selectedCategoryIdList = bundle.getStringArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
-           
+//           
             StringBuilder builder = new StringBuilder();
-			for (String id : selectedCategoryIdList) {
-				builder.append(id);
+//			for (String id : selectedCategoryIdList) {
+//				builder.append(id);
+//				builder.append(";");
+//			}
+//			
+			updateCountTextView(typeCountTextView, selectedCategoryIdList.size());
+			
+            for (String id : selectedCategoryIdList) {
+            	EventCategory category = new EventCategory();
+            	category.setId(Integer.parseInt(id));
+            	eventCategories.add(category);
+            	
+            	builder.append(id);
 				builder.append(";");
 			}
-			
-			updateCountTextView(typeCountTextView, selectedCategoryIdList.size());
 			
             Toast.makeText(this, builder, Toast.LENGTH_SHORT).show(); 
         } else if (requestCode == EVENT_CONTACT_REQUEST_TEXT) { 
@@ -95,6 +128,8 @@ public class EventCreateActivity extends Activity {
 			for (int id : selectedContactIdList) {
 				builder.append(id);
 				builder.append(";");
+				
+				eventMembers.add(id);
 			}
             
 			updateCountTextView(contactCountTextView, selectedContactIdList.size());
@@ -102,14 +137,17 @@ public class EventCreateActivity extends Activity {
             Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
         } else if (requestCode == EVENT_DATE_REQUEST_TEXT) {
         	Bundle bundle = data.getExtras(); 
-            ArrayList<String> selectedDateList = bundle.getStringArrayList(ActivityConst.EVENT_DATE_IDS);
-            
-            StringBuilder builder = new StringBuilder();
-			for (String date : selectedDateList) {
-				builder.append(date);
-				builder.append(";");
-			}
-			Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
+            long[] selectedDateList = bundle.getLongArray(ActivityConst.EVENT_DATE_IDS);
+            if (selectedDateList != null) {
+            	startDate = selectedDateList[0];
+            	endDate = selectedDateList[1];
+            }
+//            StringBuilder builder = new StringBuilder();
+//			for (String date : selectedDateList) {
+//				builder.append(date);
+//				builder.append(";");
+//			}
+//			Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
 			updateDatesView();
         }
     }
@@ -147,5 +185,114 @@ public class EventCreateActivity extends Activity {
 		 
 		 typeCountTextView = (TextView)findViewById(R.id.type_count_textview);
 		 contactCountTextView = (TextView)findViewById(R.id.contact_count_textview);
+    }
+
+    private boolean validateInput() {
+		if (((EditText)findViewById(R.id.event_add_name)).getText().toString() == "") {
+			Toast.makeText(getApplicationContext(), "Name is empty.", Toast.LENGTH_LONG).show();
+			return false;
+		} 
+		
+		if (startDate <= 0 || endDate <= 0){
+			Toast.makeText(getApplicationContext(), "Time is empty.", Toast.LENGTH_LONG).show();
+			return false;
+		}
+		
+		if (eventCategories.size() == 0) {
+			Toast.makeText(getApplicationContext(), "Category is empty.", Toast.LENGTH_LONG).show();
+			return false;
+		}
+		
+		if (eventMembers.size() == 0) {
+			Toast.makeText(getApplicationContext(), "Member is empty.", Toast.LENGTH_LONG).show();
+			return false;
+		}
+			
+		return true;
+	}
+    
+    private EventCreateRequest fillRequest() {
+    	EventCreateRequest req = new EventCreateRequest();
+    	req.setTitle(((EditText)findViewById(R.id.event_add_name)).getText().toString());
+		
+    	req.setStartTime(startDate);
+		req.setEndTime(endDate);
+		
+		
+		req.setLocation(((EditText)findViewById(R.id.event_add_address)).getText().toString());
+		req.setDescription(((EditText)findViewById(R.id.event_add_details)).getText().toString());
+		
+		for (EventCategory cate : eventCategories) {
+			req.getCategories().add(cate);			
+		}
+		
+		for (Integer id : eventMembers) {
+			EventCreateMembersRequest mem = new EventCreateMembersRequest();
+			mem.setId(id);
+			//to get value from ui
+			mem.setAdmin(false);
+			req.getMembers().add(mem);
+		}
+		
+		EventCreateMembersRequest mem = new EventCreateMembersRequest();
+		mem.setId(UserContext.getId());
+		mem.setAdmin(true);
+		req.getMembers().add(mem);
+		
+		EventCreateOwnerRequest owner = new EventCreateOwnerRequest();
+		owner.setId(UserContext.getId());
+		req.setOwner(owner);
+		
+		req.setStatus("INIT");
+		
+		//to get value from ui.
+		req.setVisibility("V_PUBLIC");
+		//to get value from ui.
+		req.setLocationShareable(true);
+		
+		return req;
+    }
+    
+    private class PostDataTask extends AsyncTask<EventCreateRequest, Integer, String> 
+    {
+        @Override  
+        protected void onPreExecute() 
+        {  
+        }  
+          
+        @Override  
+        protected String doInBackground(EventCreateRequest... params) 
+        {  
+            try 
+            {
+            	EventService eventService = new EventService();
+            	boolean result = eventService.createEvent(params[0]);
+            	if (!result) {
+            		return "ok";
+        		}
+            } 
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return "error: " + e.getMessage();
+            }
+            
+            return "ok";
+        }  
+          
+        @Override  
+        protected void onProgressUpdate(Integer... progresses) 
+        {  
+        }  
+          
+        @Override  
+        protected void onPostExecute(String result) 
+        {  
+        }  
+          
+        @Override  
+        protected void onCancelled() 
+        {  
+        }  
     }
 }

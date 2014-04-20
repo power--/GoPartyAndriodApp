@@ -8,7 +8,9 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-public class JsonSerializer {
+import com.goparty.data.WebServiceConst;
+
+public class JsonUtil {
 	private static ObjectMapper mapper = new ObjectMapper();
 	
 	public static <T> T deserialize(String jsonifiedData, Class<T> valueType) {
@@ -39,16 +41,11 @@ public class JsonSerializer {
 		try {
 			return mapper.writeValueAsString(object);
 		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.JSON_ERROR;
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.JSON_ERROR;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return WebServiceConst.JSON_ERROR;
 		}
-		
-		return "";
 	}
 }

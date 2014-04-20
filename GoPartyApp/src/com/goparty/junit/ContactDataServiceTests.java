@@ -14,14 +14,14 @@ public class ContactDataServiceTests extends AndroidTestCase {
 
 		 String result = serv.getFriendsJsonData();
 		 Log.i("tag", result + "");
-	 }
+	}
 	
 	public void getFriendsListTest() {
 		ContactDataService serv = new ContactDataService();
 
 		 ArrayList<Contact> result = serv.getFriendsData();
 		 assertNotSame(0, result.size());
-	 }
+	}
 	
 	/*	public void setFriendsList() {
 		ContactDataService serv = new ContactDataService();

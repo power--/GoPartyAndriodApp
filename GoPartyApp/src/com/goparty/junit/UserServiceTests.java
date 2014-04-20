@@ -1,12 +1,9 @@
 package com.goparty.junit;
 
-import com.goparty.biz.UserService;
-
 import android.test.AndroidTestCase;
-import android.util.Log;
 
 public class UserServiceTests extends AndroidTestCase {
-	 public void getCurrentProgerssTest() {
+	 /*public void getCurrentProgerssTest() {
 		 UserService serv = new UserService();
 //		 boolean result = serv.ValidateNickName("abcabc");
 //		 //Log.i("tag", result + "");
@@ -15,5 +12,5 @@ public class UserServiceTests extends AndroidTestCase {
 		 
 		 String result = serv.serialize();
 		 Log.i("tag", result + "");
-	 }
+	 }*/
 }
