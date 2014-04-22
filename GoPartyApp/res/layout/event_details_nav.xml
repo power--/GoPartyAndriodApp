@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingTop="5dp">
+    <TextView
+        android:id="@+id/nav_main_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableBottom="@drawable/goparty_event_details_nav_bg"
+        android:gravity="center_horizontal"
+        android:text="@string/details"
+        android:textColor="#82858b"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/nav_chat_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="@string/chat"
+        android:textColor="#82858b" 
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/nav_share_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="@string/share"
+        android:textColor="#82858b" 
+        android:textSize="20sp"/>
+</LinearLayout>

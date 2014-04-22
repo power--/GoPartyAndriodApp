@@ -1,4 +1,4 @@
-package com.goparty.adapter;
+/*package com.goparty.adapter;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.goparty.app.R;
-import com.goparty.app.ContactTempActivity;
+//import com.goparty.app.ContactTempActivity;
 import com.goparty.widget.ContactListItem;
 
 
@@ -229,3 +229,4 @@ public class AreaAdapter extends BaseAdapter {
 		return data;
 	}
 }
+*/

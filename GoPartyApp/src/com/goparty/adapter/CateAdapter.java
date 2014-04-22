@@ -1,4 +1,4 @@
-package com.goparty.adapter;
+/*package com.goparty.adapter;
 
 
 import java.util.ArrayList;
@@ -95,4 +95,4 @@ public class CateAdapter extends BaseAdapter
 		
 		return data;
 	}
-}
+}*/

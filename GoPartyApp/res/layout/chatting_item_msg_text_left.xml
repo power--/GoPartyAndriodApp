@@ -54,9 +54,7 @@
 	            android:layout_alignParentLeft="true"
 	            android:layout_toLeftOf="@id/tv_chatcontent"
 	            style="@style/chat_text_name_style"/>
-	         
-	           
-	           
+
 	    </RelativeLayout>
 	    
 </LinearLayout>

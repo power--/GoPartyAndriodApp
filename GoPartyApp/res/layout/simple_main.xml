@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@drawable/tab_bg_new" >
-
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="0dp"
@@ -46,7 +45,7 @@
   
 
         </RelativeLayout>
-
+ 
         <RelativeLayout
             android:id="@+id/contact_layout"
             android:layout_width="0dp"

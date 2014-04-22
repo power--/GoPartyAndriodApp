@@ -5,14 +5,15 @@ import java.util.List;
 
 public class Event {
     private String id;
+    private User owner;
     private String title;
     private Location location;
     private Date startTime;
     private Date endTime;
-    private List<User> attendees;
-    private User owner;
-    private String description;
     private EventCategory eventCategory;
+    private List<User> attendees;
+    private String description;
+    
     private EventStatus eventStatus;
     private VisibilityCategory visiblityCategory;
     

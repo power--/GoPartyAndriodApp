@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/event_type_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/event_type"
+        android:src="@drawable/goparty_event_type_default" />
+	<ImageView
+        android:id="@+id/event_type_item_check_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/selected"
+        android:visibility="invisible"
+        android:layout_alignRight="@id/event_type_item_image"
+        android:layout_alignBottom="@id/event_type_item_image"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/goparty_event_type_checked" />
+	<TextView 
+	    android:id="@+id/event_type_item_name"
+	    android:layout_below="@id/event_type_item_image"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+	<TextView
+	    android:id="@+id/event_type_item_id"
+	    android:layout_below="@id/event_type_item_image"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+	</TextView>
+</RelativeLayout>

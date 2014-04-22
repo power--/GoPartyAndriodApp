@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
-     android:layout_height="match_parent" 
+     android:layout_height="match_parent"
+     android:background="#eee" 
      android:orientation="vertical">
-
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/goparty_activity_header"
+	    android:background="@drawable/goparty_top_bg"
 	    android:paddingLeft="5dp"
 	    android:paddingRight="10dp">
 	    	<Button
@@ -64,7 +64,7 @@
 				android:layout_gravity="center"        	     	
 				android:scaleType="matrix"
 				android:clickable="true"
-				android:src="@drawable/goparty_icon_guys"
+				android:src="@drawable/goparty_event_invite"
  				android:contentDescription="@string/details" />
 			<TextView
 		        android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
 		        android:paddingLeft="10dp"
 		        android:paddingTop="5dp"
 	    		android:paddingBottom="5dp"
-		        android:textSize="18sp"
+		        android:textSize="16sp"
 		        android:textColor="#656565"
 		        android:text="@string/new_contact" />	
 			<TextView  
@@ -89,6 +89,99 @@
 				android:src="@drawable/mm_submenu"
  				android:contentDescription="@string/details" /> 
 	</LinearLayout>
+	
+	<TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc"/>
+	
+	<!-- Group -->
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#eee"
+	    android:paddingTop="5dp"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:paddingBottom="5dp">
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"        	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/goparty_group"
+ 				android:contentDescription="@string/details" />
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:paddingLeft="10dp"
+		        android:paddingTop="5dp"
+	    		android:paddingBottom="5dp"
+		        android:textSize="16sp"
+		        android:textColor="#656565"
+		        android:text="@string/group" />	
+			<TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"       	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/mm_submenu"
+ 				android:contentDescription="@string/details" /> 
+	</LinearLayout>
+	
+	<TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc"/>
+	
+	<!-- Discussion -->
+	<!-- <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#eee"
+	    android:paddingTop="5dp"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:paddingBottom="5dp">
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"        	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/goparty_discussion_group"
+ 				android:contentDescription="@string/details" />
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center"
+		        android:paddingLeft="10dp"
+		        android:paddingTop="5dp"
+	    		android:paddingBottom="5dp"
+		        android:textSize="16sp"
+		        android:textColor="#656565"
+		        android:text="@string/discussion" />	
+			<TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"       	     	
+				android:scaleType="matrix"
+				android:clickable="true"
+				android:src="@drawable/mm_submenu"
+ 				android:contentDescription="@string/details" /> 
+	</LinearLayout> -->
+	
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
@@ -116,9 +209,8 @@
 	
 	<ListView 
 		android:id="@+id/contactsListView"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:background="#eee">
 		</ListView>
-
 </LinearLayout>

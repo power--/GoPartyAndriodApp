@@ -2,7 +2,7 @@ package com.goparty.app.common;
 
 import java.util.List;
 
-public interface ServerListener 
+public interface ServerListener<T> 
 {
-	void serverDataArrived(List list, boolean isEnd);
+	void serverDataArrived(List<T> list, boolean isEnd);
 }
