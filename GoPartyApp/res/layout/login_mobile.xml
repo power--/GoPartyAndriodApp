@@ -4,5 +4,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <LinearLayout
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/login_editbox" 
+    android:orientation="horizontal">
+    <EditText 
+	    android:id="@+id/login_user_edit"
+	    android:layout_height="40dp"
+	    android:textColor="#000"
+	    android:textSize="15sp"
+	    android:singleLine="true"
+	    android:layout_width="0dp"
+	    android:layout_weight="1"
+	    android:background="@drawable/login_editbox"
+	    android:hint="@string/mobile_number"/>
+    
+    <ImageView
+		android:layout_width="wrap_content"
+	    android:layout_height="40dp"
+		android:src="@drawable/goparty_login_btn_separator"/>
+    
+    <ImageView
+        android:id="@+id/login_bind_status_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/goparty_login_unbinded" />
 
+</LinearLayout>
+
+    <EditText
+        android:id="@+id/login_message_code"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop ="10dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_editbox"
+        android:ems="10"
+        android:hint="@string/message_code"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="15sp" />
+    
+    <Button
+        android:id="@+id/login_mobile_login_btn"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_style_green"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+    
 </LinearLayout>

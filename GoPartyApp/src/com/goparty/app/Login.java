@@ -1,44 +1,73 @@
 package com.goparty.app;
 
+import com.goparty.biz.AuthService;
+import com.goparty.model.AuthInfo;
+import com.goparty.net.JsonHttpClient;
+
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class Login extends Activity {
-//	private EditText mUser; // �ʺű༭��
-//	private EditText mPassword; // ����༭��
+private Button loginButton;
+private EditText messageCodeText;
+private EditText mobileText;
+private boolean mobileStep1 = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         
-//        mUser = (EditText)findViewById(R.id.login_user_edit);
-//        mPassword = (EditText)findViewById(R.id.login_passwd_edit);     
+        
+        RadioButton mobileButton =(RadioButton) this.findViewById(R.id.login_mobile_radiobtn);
+        mobileButton.setChecked(true);
+        
+        RadioButton qqButton =(RadioButton) this.findViewById(R.id.login_qq_radiobtn);
+        qqButton.setEnabled(false);
+        
+        RadioButton weChatButton =(RadioButton) this.findViewById(R.id.login_wechat_radiobtn);
+        weChatButton.setEnabled(false);
+        
+        mobileText=(EditText) this.findViewById(R.id.login_user_edit);
+        messageCodeText =(EditText) this.findViewById(R.id.login_message_code);
+        loginButton =(Button) this.findViewById(R.id.login_mobile_login_btn);
+        
+        InitLoginButton();
+        
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	login_clicked(v);
+            }
+        });
+            
+        }
+    
+    private void InitLoginButton()
+    {
+        if(mobileStep1)
+        {
+        	loginButton.setText(R.string.message_code_btn);
+        	messageCodeText.setVisibility(View.INVISIBLE);
+        }else
+        {
+        	loginButton.setText(R.string.login);
+        	messageCodeText.setVisibility(View.VISIBLE);
+        }
+        
     }
     
-    private void initFootBar() {
-//		fbNews = (RadioButton) findViewById(R.id.main_footbar_news);
-//		fbQuestion = (RadioButton) findViewById(R.id.main_footbar_question);
-//		fbTweet = (RadioButton) findViewById(R.id.main_footbar_tweet);
-//		fbactive = (RadioButton) findViewById(R.id.main_footbar_active);
-//
-//		fbSetting = (ImageView) findViewById(R.id.main_footbar_setting);
-//		fbSetting.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				// 展示快捷栏&判断是否登录&是否加载文章图片
-//				UIHelper.showSettingLoginOrLogout(Main.this,
-//						mGrid.getQuickAction(0));
-//				mGrid.show(v);
-//			}
-//		});
-	}
 //
 //    public void login_mainweixin(View v) {
 //    	if("buaa".equals(mUser.getText().toString()) && "123".equals(mPassword.getText().toString()))   //�ж� �ʺź�����
@@ -85,10 +114,54 @@ public class Login extends Activity {
 //        //startActivity(intent);
 //      }
     
-    public void go_to_home_clicked(View v) {
-    	Intent intent = new Intent(Login.this,MainWeixin.class); 
-    	startActivity(intent);
-    	overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    public void login_clicked(View v) {
+    	
+    	if(mobileStep1)
+    	{
+    		if(mobileText.getText().length() > 0)
+    		{
+    			mobileStep1 = false;
+    			InitLoginButton();
+    		}
+    		
+    	}else
+    	{
+    		if(messageCodeText.getText().length() <= 0 )
+    		{
+    			return;
+    		}
+    		
+    		AuthInfo aInfo = new AuthInfo();
+    		aInfo.setLoginName(mobileText.getText().toString());
+    		aInfo.setPassword(messageCodeText.getText().toString());
+    		new AuthAsyncTask().execute(aInfo);
+    	}
+    }
+
+    private class AuthAsyncTask extends AsyncTask<AuthInfo, Void, Boolean> {
+        /** The system calls this to perform work in a worker thread and
+          * delivers it the parameters given to AsyncTask.execute() */
+        protected Boolean doInBackground(AuthInfo... Infos) {
+            return AppContext.CurrentContext.Login(Infos[0]);
+        }
+        
+        protected void onProgressUpdate(Integer... progress){
+			
+		}
+        
+        /** The system calls this to perform work in the UI thread and delivers
+          * the result from doInBackground() */
+        protected void onPostExecute(Boolean result) {
+            if(result)
+            {
+            	Intent intent = new Intent(Login.this,SimpleMainActivity.class); 
+            	startActivity(intent);
+            	
+            }else
+            {
+            	
+            }
+        }
     }
     
 //    public class LeftRightSlideActivity extends Activity {

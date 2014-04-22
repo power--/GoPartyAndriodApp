@@ -1,53 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#eee"
     android:orientation="vertical" >
 
-	<ImageView
-		android:id="@+id/login_header"
-			android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-			android:src="@drawable/goparty_login_header"/>
-    
+	  <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/goparty_activity_header"
+	    android:gravity="right"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="10dp">
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/login" />
+	</LinearLayout>
+	
 	<LinearLayout
 	    android:id="@+id/login_linearlayout_btns"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/login_header"
 	    android:layout_marginTop="35dp"
+	    android:layout_marginLeft="50dp"
+	    android:layout_marginRight="50dp"
 	    android:gravity="center_vertical"
 	    android:orientation="horizontal" >
 
-		<RadioButton
-		    android:id="@+id/login_wechat_radiobtn"
-		    style="@style/style_login_radio_btns"
-		    android:drawableTop="@drawable/login_btn_wechat" />
-		<ImageView
-			android:layout_width="wrap_content"
+	    <RadioButton
+	        android:id="@+id/login_wechat_radiobtn"
+	        style="@style/style_login_radio_btns"
+	        android:layout_weight="0.14"
+	        android:drawableTop="@drawable/login_btn_wechat" />
+
+	    <ImageView
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:gravity="center_vertical"
-			android:src="@drawable/goparty_login_btn_separator"/>
-		<RadioButton 
-			android:id="@+id/login_qq_radiobtn"
-			style="@style/style_login_radio_btns"
-			android:drawableTop="@drawable/login_btn_qq"/>
-		<ImageView
-			android:layout_width="wrap_content"
+	        android:src="@drawable/goparty_login_btn_separator" />
+
+	    <RadioButton
+	        android:id="@+id/login_qq_radiobtn"
+	        style="@style/style_login_radio_btns"
+	        android:layout_width="wrap_content"
+	        android:layout_weight="0.22"
+	        android:drawableTop="@drawable/login_btn_qq" />
+
+	    <ImageView
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-			android:src="@drawable/goparty_login_btn_separator"/>
-		<RadioButton 
-			android:id="@+id/login_mobile_radiobtn"
-			style="@style/style_login_radio_btns"
-			android:drawableTop="@drawable/login_btn_mobile"/>
+	        android:src="@drawable/goparty_login_btn_separator" />
+
+	    <RadioButton
+	        android:id="@+id/login_mobile_radiobtn"
+	        style="@style/style_login_radio_btns"
+	        android:layout_weight="0.08"
+	        android:drawableTop="@drawable/login_btn_mobile" />
+
 	</LinearLayout>
 	
-	<FrameLayout
-        android:id="@+id/login_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
-    </FrameLayout>
-
-</RelativeLayout>
+<include layout="@layout/login_mobile" />
+	
+</LinearLayout>

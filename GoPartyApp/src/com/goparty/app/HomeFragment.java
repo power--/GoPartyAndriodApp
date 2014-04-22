@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
     }
 
 	  public void addItemsOnSpinner(Spinner theSpinner, List<String> theList) {
-			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, theList);
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.drop_down_view, theList);
 			dataAdapter.setDropDownViewResource(R.layout.drop_down_item);
 			theSpinner.setAdapter(dataAdapter);
 		  }
