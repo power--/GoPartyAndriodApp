@@ -29,9 +29,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> -->
-        
-        <!-- <activity
+        </activity> -->        
+        <activity
             android:name=".Login"
             android:label="@string/title_activity_main"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -40,18 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         -->
-         
         <activity
             android:name=".SimpleMainActivity"
             android:label="@string/title_activity_main"
             android:theme="@android:style/Theme.NoTitleBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        
         
         <!-- <activity android:name=".SimpleMainActivity"  android:theme="@android:style/Theme.NoTitleBar" />   
          -->

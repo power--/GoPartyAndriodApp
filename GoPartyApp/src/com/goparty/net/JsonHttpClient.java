@@ -1,4 +1,4 @@
-package com.goparty.net;
+ package com.goparty.net;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -97,6 +97,7 @@ public class JsonHttpClient {
 		try {
 	    		conn.setRequestMethod("POST");
 	    		conn.setRequestProperty("Content-type","application/json");
+	    		conn.setRequestProperty("Accept","application/json");
 	    		//conn.setDoOutput(true);
 	    		conn.setConnectTimeout(TIMEOUT);
 	    		conn.setReadTimeout(TIMEOUT);
@@ -148,7 +149,16 @@ public class JsonHttpClient {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		
 		try {
+<<<<<<< HEAD
 	    		conn.setRequestMethod(method);
+=======
+	    		conn.setRequestMethod("POST");
+	    		conn.setRequestProperty("Content-type","application/json");
+	    		conn.setRequestProperty("Accept","application/json");
+	    		//conn.setDoOutput(true);
+	    		conn.setConnectTimeout(TIMEOUT);
+	    		conn.setReadTimeout(TIMEOUT);
+>>>>>>> FETCH_HEAD
 	    		
 	    		setRequestCommonProperty(conn);
 	    		
