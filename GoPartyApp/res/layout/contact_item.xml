@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.goparty.widget.ContactListItem xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp" >
+
+    <com.goparty.widget.ContactFace
+        android:id="@+id/contactFace"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/contactName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="8dp"
+        android:text="@string/placeholder1"
+        android:textColor="#989798"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/contactSignature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/placeholder2"
+        android:textColor="#989798"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/image_contact_check"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/goparty_v2_btn_checked_bg"
+        android:contentDescription="@string/empty" />
+
+    <ImageView
+        android:id="@+id/image_contact_add"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_gravity="center"
+        android:background="@drawable/mm_submenu" 
+        android:contentDescription="@string/empty"/>
+
+</com.goparty.widget.ContactListItem>
