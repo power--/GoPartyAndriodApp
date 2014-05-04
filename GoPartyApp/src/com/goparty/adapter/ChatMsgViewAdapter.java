@@ -1,23 +1,19 @@
 package com.goparty.adapter;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.goparty.model.ChatMsgEntity;
+import com.goparty.model.EventMessage;
 import com.goparty.app.R;
+import com.goparty.app.common.UserContext;
 
 public class ChatMsgViewAdapter extends BaseAdapter {
 	
@@ -29,13 +25,14 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	
     private static final String TAG = ChatMsgViewAdapter.class.getSimpleName();
 
-    private List<ChatMsgEntity> coll;
+//    private List<ChatMsgEntity> coll;
+    private List<EventMessage> coll;
 
     private Context ctx;
     
     private LayoutInflater mInflater;
 
-    public ChatMsgViewAdapter(Context context, List<ChatMsgEntity> coll) {
+    public ChatMsgViewAdapter(Context context, List<EventMessage> coll) {
         ctx = context;
         this.coll = coll;
         mInflater = LayoutInflater.from(context);
@@ -57,15 +54,14 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 
 	public int getItemViewType(int position) {
 		// TODO Auto-generated method stub
-	 	ChatMsgEntity entity = coll.get(position);
+		EventMessage entity = coll.get(position);
 	 	
-	 	if (entity.getMsgType())
+	 	if (entity.getSender().getId() == UserContext.getId())
 	 	{
-	 		return IMsgViewType.IMVT_COM_MSG;
-	 	}else{
 	 		return IMsgViewType.IMVT_TO_MSG;
+	 	}else{
+	 		return IMsgViewType.IMVT_COM_MSG;
 	 	}
-	 	
 	}
 
 
@@ -77,8 +73,8 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	
     public View getView(int position, View convertView, ViewGroup parent) {
     	
-    	ChatMsgEntity entity = coll.get(position);
-    	boolean isComMsg = entity.getMsgType();
+    	EventMessage entity = coll.get(position);
+    	boolean isComMsg = entity.getSender().getId() != UserContext.getId();
     		
     	ViewHolder viewHolder = null;	
 	    if (convertView == null)
@@ -103,9 +99,9 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 	
 	    
 	    
-	    viewHolder.tvSendTime.setText(entity.getDate());
-	    viewHolder.tvUserName.setText(entity.getName());
-	    viewHolder.tvContent.setText(entity.getText());
+	    viewHolder.tvSendTime.setText(entity.getPublishTime().toString());
+	    viewHolder.tvUserName.setText(entity.getSender().getNickName());
+	    viewHolder.tvContent.setText(entity.getMessage());
 	    
 	    return convertView;
     }

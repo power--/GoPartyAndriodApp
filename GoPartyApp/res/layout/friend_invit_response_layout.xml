@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#eee" >
+
+    <include
+        android:id="@+id/friend_invite_response_header"
+        layout="@layout/common_header_layout" />
+
+    <include
+        android:id="@+id/friend_invite_response_inviter"
+        layout="@layout/contact_item"
+        />
+    
+    <EditText
+        android:id="@+id/friend_invite_response_msg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:hint="@string/reply_message"
+        />
+    <ListView
+        android:id="@+id/friend_invite_response_groups"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        />
+</LinearLayout>

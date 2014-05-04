@@ -135,13 +135,20 @@ public class JsonHttpClient {
 	public static String post(String url, String content) throws IOException {
 		return post(url, content.getBytes());
 	}*/
+	public static RestWsResponse put(String url, String requestBody) throws IOException {
+		return postOrPut(url, requestBody, "PUT");
+	}
 	
 	public static RestWsResponse post(String url, String requestBody) throws IOException {
+		return postOrPut(url, requestBody, "POST");
+	}
+	
+	private static RestWsResponse postOrPut(String url, String requestBody, String method) throws IOException {
 		
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		
 		try {
-	    		conn.setRequestMethod("POST");
+	    		conn.setRequestMethod(method);
 	    		
 	    		setRequestCommonProperty(conn);
 	    		
@@ -174,6 +181,37 @@ public class JsonHttpClient {
 		    	if(conn!=null)
 		    	  conn.disconnect();
 		}
+	}
+	
+	public static RestWsResponse delete(String url) throws IOException {
+		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+		try {
+	    	setRequestCommonProperty(conn);
+	    	conn.setRequestMethod("DELETE");	    	
+	    	int code = conn.getResponseCode();
+	    	
+	    	if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {
+	    		InputStream errorStream = conn.getErrorStream();
+	    		
+	    		try {
+	    			String errorData = streamToString(errorStream);
+	    			throw new HttpException(code, errorData);
+	    		} finally {
+	    			errorStream.close();
+	    		}
+	    	}
+	    	
+	    	InputStream responseStream = conn.getInputStream();
+	    	try {
+	    		ObjectMapper mapper = new ObjectMapper();
+	    		return mapper.readValue(responseStream, RestWsResponse.class);
+    		} finally {
+    			responseStream.close();
+    		}
+	    } finally {
+	    	if(conn!=null)
+	    	  conn.disconnect();
+	    }
 	}
 		
 	public static void setRequestCommonProperty(HttpURLConnection conn) {

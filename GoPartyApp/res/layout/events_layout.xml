@@ -53,6 +53,13 @@
 		    android:layout_height="wrap_content"
 		    android:background="@drawable/goparty_icon_add"
 		    android:contentDescription="@string/add" />
+	    <!-- Friends Invitation -->
+	    <Button
+		    android:id="@+id/btn_event_details_friend_invite"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/new_contact"
+		    />
 <!--android:gravity="center_vertical"  -->
 <!-- 
 		<EditText

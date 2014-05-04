@@ -3,9 +3,9 @@ package com.goparty.widget;
 import com.goparty.app.R;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,6 +31,8 @@ public class ContactListItem extends LinearLayout
 	ContactFace contactFace;
 	TextView contactName;
 	TextView contactSignature;
+	ImageView imageCheck;
+	ImageView imageAdd;
 
 	public ContactListItem(Context context) {
 		super(context);
@@ -55,12 +57,21 @@ public class ContactListItem extends LinearLayout
 		contactFace = (ContactFace) findViewById(R.id.contactFace);
 		contactName = (TextView) findViewById(R.id.contactName);
 		contactSignature = (TextView) findViewById(R.id.contactSignature);
+		imageCheck = (ImageView) findViewById(R.id.image_contact_check);
+		imageAdd = (ImageView) findViewById(R.id.image_contact_add);
 	}
 	
 	public void setContactItemData(String faceUri, String name, String signature) {
+		setContactItemData(faceUri, name, signature, "");
+	}
+			
+	public void setContactItemData(String faceUri, String name, String signature, String status) {
 		contactFace.setFaceUri(faceUri);
 		contactName.setText(name);
 		contactSignature.setText(signature);
+		if (status.equalsIgnoreCase("INIT")) {
+			imageAdd.setVisibility(View.VISIBLE);
+		}
 	}
 	
 /*	public void setDistanceText(String dis)

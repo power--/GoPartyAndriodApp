@@ -32,7 +32,7 @@ public class EventCreateActivity extends Activity {
 	private long startDate;
 	private long endDate;
 	private ArrayList<EventCategory> eventCategories = new ArrayList<EventCategory>();
-	private ArrayList<Integer> eventMembers = new ArrayList<Integer>();
+	private ArrayList<String> eventMembers = new ArrayList<String>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,10 +122,10 @@ public class EventCreateActivity extends Activity {
             Toast.makeText(this, builder, Toast.LENGTH_SHORT).show(); 
         } else if (requestCode == EVENT_CONTACT_REQUEST_TEXT) { 
         	Bundle bundle = data.getExtras(); 
-            ArrayList<Integer> selectedContactIdList = bundle.getIntegerArrayList(ActivityConst.EVENT_CONTACT_IDS);
+            ArrayList<String> selectedContactIdList = bundle.getStringArrayList(ActivityConst.EVENT_CONTACT_IDS);
             
             StringBuilder builder = new StringBuilder();
-			for (int id : selectedContactIdList) {
+			for (String id : selectedContactIdList) {
 				builder.append(id);
 				builder.append(";");
 				
@@ -226,7 +226,7 @@ public class EventCreateActivity extends Activity {
 			req.getCategories().add(cate);			
 		}
 		
-		for (Integer id : eventMembers) {
+		for (String id : eventMembers) {
 			EventCreateMembersRequest mem = new EventCreateMembersRequest();
 			mem.setId(id);
 			//to get value from ui

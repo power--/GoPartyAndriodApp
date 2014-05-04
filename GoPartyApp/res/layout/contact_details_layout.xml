@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/goparty_top_bg"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp" >
+        <Button
+            android:id="@+id/btn_nav_contact_details_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/goparty_icon_return"
+            android:contentDescription="@string/go_back" />
+        	<TextView  
+        		android:layout_width="0dp"  
+        		android:layout_height="wrap_content"  
+        		android:layout_weight="1" />  
+		    <TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_vertical"
+		        android:textSize="35sp"
+		        android:text="@string/details" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#eee"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+		<LinearLayout
+		    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="15dp"
+        	android:layout_gravity="center_vertical"
+        	android:orientation="horizontal">
+			<com.goparty.widget.ContactFace
+			      android:id="@+id/contactFace"
+   	    		  android:layout_width="35dp"
+				  android:layout_height="35dp"
+				  android:layout_gravity="center_vertical"/>
+			<LinearLayout
+			    android:layout_weight="1"
+			    android:layout_width="0dp"
+	        	android:layout_height="wrap_content"
+	        	android:layout_gravity="center_vertical"
+	        	android:orientation="vertical">
+	        	<TextView
+	        	    android:id="@+id/contact_details_nickname"
+   	    		  	android:layout_width="fill_parent"
+				  	android:layout_height="wrap_content"
+				  	android:layout_gravity="center_vertical"/>
+	        	<TextView
+	        	    android:id="@+id/contact_details_id"
+   	    		  	android:layout_width="fill_parent"
+				  	android:layout_height="wrap_content"
+				  	android:layout_gravity="center_vertical"/>
+	        </LinearLayout>
+		</LinearLayout>
+		<TextView
+       	    android:id="@+id/contact_details_mobile"
+ 	    	android:layout_width="fill_parent"
+		  	android:layout_height="wrap_content"
+		  	android:layout_gravity="center_vertical"/>
+		
+		<Button
+       	    android:id="@+id/contact_details_action_button"
+ 	    	android:layout_width="fill_parent"
+		  	android:layout_height="wrap_content"
+		  	android:text="@string/contact_add_as_friend"
+		  	android:layout_gravity="center_vertical"/>
+		
+		<Button
+       	    android:id="@+id/contact_details_del_friend_button"
+ 	    	android:layout_width="fill_parent"
+		  	android:layout_height="wrap_content"
+		  	android:text="@string/contact_delete_from_friend"
+		  	android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

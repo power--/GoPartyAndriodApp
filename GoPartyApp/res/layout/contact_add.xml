@@ -42,21 +42,33 @@
 		<TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_vertical"
 	        android:textSize="15sp"
 	        android:text="@string/add_contact_by_search" />
-		<EditText
-            android:id="@+id/event_add_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/editbox_normal"
-            android:drawableRight="@drawable/goparty_icon_search"
-            android:ems="10"
-            android:hint="@string/wechat_qq_mobile"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textSize="15sp" />
+		<LinearLayout
+		    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="15dp"
+        	android:layout_gravity="center_vertical"
+        	android:orientation="horizontal">
+			<EditText
+	            android:id="@+id/contact_add_keyword"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="5dp"
+	            android:background="@drawable/editbox_normal"
+	            android:drawableRight="@drawable/goparty_icon_search"
+	            android:ems="10"
+	            android:hint="@string/wechat_qq_mobile"
+	            android:singleLine="true"
+	            android:textColor="#000"
+	            android:textSize="15sp" />
+			<Button
+			    android:id="@+id/btn_contact_add_search"
+			    android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+			    android:text="@string/search"/>			    
+		</LinearLayout>
 		<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

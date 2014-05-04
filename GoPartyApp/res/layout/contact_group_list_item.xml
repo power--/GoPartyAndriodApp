@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView></TextView>
+<!-- 
+<com.goparty.widget.ContactListItem xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp" >
+
+    
+        	<com.goparty.widget.ContactFace
+   	    android:id="@+id/contactFace"
+   	    android:layout_width="35dp"
+		android:layout_height="35dp"
+		android:layout_gravity="center_vertical"/>
+   
+
+    <TextView
+        android:id="@+id/contactGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="8dp"
+        android:text="@string/placeholder1"
+        android:textColor="#989798"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:contentDescription="@string/details"
+        android:scaleType="matrix"
+        android:src="@drawable/mm_submenu" />
+    
+         <TextView
+		android:id="@+id/contactSignature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:textColor="#989798"
+        android:text="@string/placeholder2" />
+   
+
+
+    
+        <Button
+            android:id="@+id/btn_contact_group_check"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/goparty_v2_btn_checked_bg"
+            />
+        <Button
+            android:id="@+id/btn_contact_group_add"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:background="@drawable/goparty_v2_btn_add_bg"
+            />
+   
+
+</com.goparty.widget.ContactListItem> -->

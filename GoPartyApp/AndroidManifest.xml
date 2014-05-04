@@ -62,8 +62,14 @@
         <activity android:name=".EventDateSelectorActivity" android:theme="@android:style/Theme.NoTitleBar" />   
         <activity android:name=".EventTypeSelectorActivity" android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".EventDetailsActivity" android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".ContactAddActivity"  android:theme="@android:style/Theme.NoTitleBar" />
-        <activity android:name=".ContactSelectorActivity"  android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactAddActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactSelectorActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactCommonActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactDetailsActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactGroupsActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".ContactGroupMgmtActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".FriendInvitationListActivity" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".FriendInvitResponseActivity" android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 
 </manifest>

@@ -9,7 +9,6 @@ import com.goparty.app.common.ServerListener;
 import com.goparty.biz.ContactService;
 import com.goparty.model.Contact;
 
-import android.R.string;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -22,7 +21,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,26 +42,30 @@ public class ContactsFragment extends Fragment implements ServerListener<Contact
 		super.onCreate(savedInstanceState);
 
 		View contactsLayout = inflater.inflate(R.layout.contacts_layout, container, false);
-		
-		Button btnNavCreate = (Button) contactsLayout.findViewById(R.id.btn_nav_contact_create);
-		btnNavCreate.setOnClickListener(new CreateOnClick());
-
+		initViews(contactsLayout);
+				
 		list = (ListView)contactsLayout.findViewById(R.id.contactsListView);
-        
         resultAdapter = new ContactListAdapter(getActivity().getApplicationContext(), contactDataList);
-        
-        //ContactService dataServ = new ContactService();
-        //dataServ.getContacts(ContactsFragment.this, 0, 0);
-        DataQuery dataQuery = new DataQuery();
-        dataQuery.execute("");
-        
-        loadingView = LayoutInflater.from(getActivity()).inflate(R.layout.list_footer, null);
-        
-//        list.addFooterView(loadingView);
+        loadingView = LayoutInflater.from(getActivity()).inflate(R.layout.list_footer, null);        
         list.setAdapter(resultAdapter);
         list.setOnItemClickListener(mOnClickListener);
         
+        DataQuery dataQuery = new DataQuery();
+        dataQuery.execute("");
+        
 		return contactsLayout;		
+	}
+	
+	private void initViews(View parentLayout) {
+		Button btnNavCreate = (Button) parentLayout.findViewById(R.id.btn_nav_contact_create);
+		btnNavCreate.setOnClickListener(new ViewOnClick());
+		
+		View layoutGroupMgmt = parentLayout.findViewById(R.id.layout_group_mgmt);
+		layoutGroupMgmt.setOnClickListener(new ViewOnClick());
+
+		View layoutFriendInvite = parentLayout.findViewById(R.id.layout_new_friend);
+		layoutFriendInvite.setOnClickListener(new ViewOnClick());
+
 	}
 	
 	private AdapterView.OnItemClickListener mOnClickListener = new AdapterView.OnItemClickListener() {
@@ -159,11 +161,24 @@ public class ContactsFragment extends Fragment implements ServerListener<Contact
 		this.handler.sendMessage(localMessage);
 	}
 
-	private class CreateOnClick implements OnClickListener {
+	private class ViewOnClick implements OnClickListener {
         @Override
         public void onClick(View v) {
-        	Intent intent = new Intent (getActivity(), ContactAddActivity.class);			
-    		startActivity(intent);
+        	switch (v.getId()) {
+			case R.id.btn_nav_contact_create:
+				Intent intent = new Intent (getActivity(), ContactAddActivity.class);			
+				startActivity(intent);
+				break;
+			case R.id.layout_new_friend:
+				//to-do: start for result and update contact list after accept;
+				Intent intentInvite = new Intent (getActivity(), FriendInvitationListActivity.class);			
+				startActivity(intentInvite);
+				break;
+			case R.id.layout_group_mgmt:
+				Intent intentGroup = new Intent (getActivity(), ContactGroupsActivity.class);			
+				startActivity(intentGroup);
+				break;
+			}
         }
 	}
 

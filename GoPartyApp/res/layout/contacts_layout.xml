@@ -51,6 +51,7 @@
 	</LinearLayout>
 	
 	<LinearLayout
+	    android:id="@+id/layout_new_friend"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="#eee"
@@ -97,6 +98,7 @@
 	
 	<!-- Group -->
 	<LinearLayout
+	    android:id="@+id/layout_group_mgmt"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="#eee"

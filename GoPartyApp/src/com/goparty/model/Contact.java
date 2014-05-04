@@ -2,7 +2,10 @@ package com.goparty.model;
 
 import java.util.ArrayList;
 
-public class Contact {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Contact implements Parcelable {
 	private String id;
 	private String nickName;
 	private long birthdate;
@@ -90,8 +93,48 @@ public class Contact {
 	public void setGroups(ArrayList<ContactGroup> groups) {
 		this.groups = groups;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int arg1) {
+        dest.writeString(id);
+    	dest.writeString(nickName);
+    	dest.writeLong(birthdate);
+    	dest.writeString(gender);
+    	dest.writeString(location);
+    	dest.writeString(signature);
+    	dest.writeString(photo);
+    	dest.writeString(remarkName);
+	}
 	
-	
+	public static final Parcelable.Creator<Contact> CREATOR = new Creator<Contact>() {
+        public Contact createFromParcel(Parcel source) {
+//            Log.i("dd","createFromParcel:"+source);
+            // TODO Auto-generated method stub
+            Contact contact = new Contact();
+            contact.id = source.readString();
+        	contact.nickName = source.readString();
+        	contact.birthdate = source.readLong();
+        	contact.gender = source.readString();
+        	contact.location = source.readString();
+        	contact.signature = source.readString();
+        	contact.photo = source.readString();
+        	contact.remarkName = source.readString();
+
+            return contact;
+        }
+
+        public Contact[] newArray(int size) {
+            // TODO Auto-generated method stub
+            return new Contact[size];
+        }
+
+    };
 	/*
 //	private String faceUrl;
 //	private String name;

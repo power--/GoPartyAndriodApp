@@ -1,13 +1,11 @@
 package com.goparty.junit;
 
-import java.util.Date;
-
-import com.goparty.app.common.JsonUtil;
 import com.goparty.data.EventDataService;
 import com.goparty.model.EventCategory;
 import com.goparty.model.EventCreateRequest;
 import com.goparty.model.EventCreateMembersRequest;
 import com.goparty.model.EventCreateOwnerRequest;
+import com.goparty.model.EventDetails;
 
 import android.test.AndroidTestCase;
 
@@ -40,17 +38,17 @@ public class EventDataServiceTests extends AndroidTestCase {
 		requestBody.getCategories().add(cate);
 		
 		EventCreateMembersRequest mem1 = new EventCreateMembersRequest();
-		mem1.setId(109);
+		mem1.setId("109");
 		mem1.setAdmin(false);
 		requestBody.getMembers().add(mem1);
 		
 		EventCreateMembersRequest mem2 = new EventCreateMembersRequest();
-		mem2.setId(110);
+		mem2.setId("110");
 		mem2.setAdmin(true);
 		requestBody.getMembers().add(mem2);
 		
 		EventCreateOwnerRequest owner = new EventCreateOwnerRequest();
-		owner.setId(110);
+		owner.setId("110");
 		requestBody.setOwner(owner);
 		
 		requestBody.setStatus("INIT");
@@ -59,9 +57,16 @@ public class EventDataServiceTests extends AndroidTestCase {
 		
 		EventDataService serv = new EventDataService();
 		
-		String temp = JsonUtil.serialize(requestBody);
+		//String temp = JsonUtil.serialize(requestBody);
 
 		boolean result = serv.createEvent(requestBody);
 		assertSame(true, result);
 	}
+
+	public void testGetSingleEventDetails() {
+		EventDataService service = new EventDataService();
+		EventDetails details = service.getEventDetails("31");
+		assertNotNull(details);
+	}
+	
 }

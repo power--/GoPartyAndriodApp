@@ -12,6 +12,10 @@
     <string name="confirm">确定</string>
     <string name="chat">聊天</string>
     <string name="time">时间</string>
+    <string name="empty"></string>
+    <string name="status_operation_failure">操作失败</string>
+    <string name="status_operation_success">操作成功</string>
+    <string name="no_data">没有数据</string>
     <!-- navigation menu -->
 	<string name="home">首页</string>
 	<string name="contact">联系人</string>
@@ -44,13 +48,24 @@
 	<string name="event_contact">联系人</string>
 	<string name="new_contact">新的朋友</string>
 	<string name="friend">好友</string>
-	<string name="group">群</string>
+	<string name="group">分组</string>
 	<string name="discussion">讨论组</string>
 	<string name="add_contact">加朋友</string>
 	<string name="add_contact_by_search">探索号码添加朋友</string>
 	<string name="add_contact_by_photo_num">添加手机联系人</string>
 	<string name="wechat_qq_mobile">微信号/QQ号/手机号</string>
 	<string name="contact_face">头像</string>
+	<string name="contact_add_as_friend">添加为好友</string>
+	<string name="contact_delete_from_friend">删除好友</string>
+	<string name="status_add_sucess">添加成功</string>
+	<string name="status_add_failure">添加失败</string>
+	<string name="status_del_sucess">删除成功</string>
+	<string name="status_del_failure">删除失败</string>
+	<string name="cant_add_yourself_as_friend">不能添加自己为好友</string>
+	<string name="add_group">添加分组</string>
+	<string name="del_group">删除分组</string>
+	<string name="reply_message">回复消息</string>
+	<string name="reply_invite">回复邀请</string>
 	<!-- chat -->
 	<string name="send">发送</string>
 	<!-- Error -->

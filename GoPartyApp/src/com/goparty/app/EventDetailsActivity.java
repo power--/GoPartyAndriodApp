@@ -1,21 +1,23 @@
 package com.goparty.app;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class EventDetailsActivity extends Activity {
+public class EventDetailsActivity extends FragmentActivity {
 	private FragmentManager fragmentManager;
 	
 	private EventDetailsMainFragment mainFragment;
 	private EventDetailsChatFragment chatFragment;
 	private EventDetailsShareFragment shareFragment;
+	
+	private String mockedEventId = "31";
 //
 //	private View mainLayout;
 //	private View chatLayout;
@@ -89,35 +91,37 @@ public class EventDetailsActivity extends Activity {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		hideFragments(transaction);
 		
+		Bundle nBundle = new Bundle();  
+		nBundle.putString("eventId", mockedEventId);  
+		
 		switch (index) {
-		case 0:
-			mainText.setCompoundDrawables(null, null, null, navDrawable);
-//			mainText.setTextColor(Color.WHITE);
-			if (mainFragment == null) {
-				mainFragment = new EventDetailsMainFragment();
-				transaction.add(R.id.event_details_panel, mainFragment);
-			} else {
-				transaction.show(mainFragment);
-			}
-			break;
-		case 1:
-			chatText.setCompoundDrawables(null, null, null, navDrawable);
-			if (chatFragment == null) {
-				chatFragment = new EventDetailsChatFragment();
-				transaction.add(R.id.event_details_panel, chatFragment);
-			} else {
-				transaction.show(chatFragment);
-			}
-			break;
-		case 2:
-			shareText.setCompoundDrawables(null, null, null, navDrawable);
-			if (shareFragment == null) {
-				shareFragment = new EventDetailsShareFragment();
-				transaction.add(R.id.event_details_panel, shareFragment);
-			} else {
-				transaction.show(shareFragment);
-			}
-			break;
+			case 0:
+				mainText.setCompoundDrawables(null, null, null, navDrawable);
+				if (mainFragment == null) {
+					mainFragment = EventDetailsMainFragment.getInstance(nBundle);
+					transaction.add(R.id.event_details_panel, mainFragment);
+				} else {
+					transaction.show(mainFragment);
+				}
+				break;
+			case 1:
+				chatText.setCompoundDrawables(null, null, null, navDrawable);
+				if (chatFragment == null) {
+					chatFragment = EventDetailsChatFragment.getInstance(nBundle); 
+					transaction.add(R.id.event_details_panel, chatFragment);
+				} else {
+					transaction.show(chatFragment);
+				}
+				break;
+			case 2:
+				shareText.setCompoundDrawables(null, null, null, navDrawable);
+				if (shareFragment == null) {
+					shareFragment = EventDetailsShareFragment.getInstance(nBundle);
+					transaction.add(R.id.event_details_panel, shareFragment);
+				} else {
+					transaction.show(shareFragment);
+				}
+				break;
 		}
 		
 		transaction.commit();

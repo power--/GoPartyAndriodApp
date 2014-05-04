@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="vertical" >
+
+        <include
+        android:id="@+id/contact_group_mgmt_header"
+        layout="@layout/common_header_layout" />
+
+
+	<!-- <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+        android:layout_weight="1"
+	    android:background="#eee"
+	    android:padding="10dp"
+	    android:orientation="vertical" >     -->
+		<ListView
+		    android:id="@+id/frinedInviteListView"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:background="#eee" >
+	</ListView>
+	<!-- </LinearLayout> -->
+	
+	<!-- seperator -->
+    <!-- <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc" />
+ -->
+    <!-- button -->
+   <!--  <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right" >
+
+        <Button
+            android:id="@+id/btn_event_type_submit"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/goparty_btn_bg_bule"
+            android:text="@string/confirm"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </LinearLayout> -->
+
+</LinearLayout>

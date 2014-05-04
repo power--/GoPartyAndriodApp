@@ -1,4 +1,4 @@
-package com.goparty.model;
+/*package com.goparty.model;
 
 public class ChatMsgEntity {
     private static final String TAG = ChatMsgEntity.class.getSimpleName();
@@ -55,3 +55,4 @@ public class ChatMsgEntity {
     }
 
 }
+*/

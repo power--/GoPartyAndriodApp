@@ -1,12 +1,15 @@
 package com.goparty.model;
 
-import java.util.UUID;
+import java.util.Date;
 
 public class User {
 	private String id;
 	private String nickName;
     private String password;
     private String userName;
+    private Date birthdate;
+    private boolean admin;
+    private String participance;
     
     public User() {
     	
@@ -42,5 +45,29 @@ public class User {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	public String getParticipance() {
+		return participance;
+	}
+
+	public void setParticipance(String participance) {
+		this.participance = participance;
 	}
 }

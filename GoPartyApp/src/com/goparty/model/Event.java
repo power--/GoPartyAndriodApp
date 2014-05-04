@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Event {
     private String id;
-    private User owner;
     private String title;
+    private User owner;
     private Location location;
     private Date startTime;
     private Date endTime;

@@ -1,13 +1,13 @@
 package com.goparty.model;
 
 public class EventCreateMembersRequest {
-	private int id;
+	private String id;
 	private boolean admin;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public boolean isAdmin() {

@@ -2,6 +2,7 @@ package com.goparty.app;
 
 import com.goparty.app.R;
 
+import android.R.raw;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,9 @@ public class EventsFragment extends Fragment {
 		Button btnDetailsDummy = (Button) eventsLayout.findViewById(R.id.btn_event_details_dummy);
 		btnDetailsDummy.setOnClickListener(new CreateOnClick());
 		
+		Button btnFriendInvite = (Button) eventsLayout.findViewById(R.id.btn_event_details_friend_invite);
+		btnFriendInvite.setOnClickListener(new CreateOnClick());
+		
 		return eventsLayout;		
 	}
 	
@@ -39,6 +43,9 @@ public class EventsFragment extends Fragment {
 	        		Intent intent2 = new Intent (getActivity(), EventDetailsActivity.class);			
 	        		startActivity(intent2);
 	        		break;
+	        	case R.id.btn_event_details_friend_invite:
+	        		Intent friendInviteIntent = new Intent(getActivity(), FriendInvitationListActivity.class);
+	        		startActivity(friendInviteIntent);
         	}
         	
         }

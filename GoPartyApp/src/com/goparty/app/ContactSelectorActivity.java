@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutionException;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -41,7 +40,7 @@ public class ContactSelectorActivity extends Activity {
 	
 	private ArrayList<Contact> contactDataList = new ArrayList<Contact>();
 	private ArrayList<Contact> faceDataList = new ArrayList<Contact>();
-	private ArrayList<Integer> selectedContactIdsList = new ArrayList<Integer>();
+	private ArrayList<String> selectedContactIdsList = new ArrayList<String>();
 	
 	@Override
     public void onCreate(Bundle contactSelectorInstanceState) {
@@ -108,10 +107,10 @@ public class ContactSelectorActivity extends Activity {
 			
 			if (isSelected) {
 				faceDataList.add(clickedItemData);
-				selectedContactIdsList.add(Integer.parseInt(clickedItemData.getId()));
+				selectedContactIdsList.add(clickedItemData.getId());
 			} else {
 				faceDataList.remove(clickedItemData);
-				selectedContactIdsList.remove(Integer.parseInt(clickedItemData.getId()));
+				selectedContactIdsList.remove(clickedItemData.getId());
 			}
 			
 			resetFaceGridViewParam();
@@ -142,7 +141,7 @@ public class ContactSelectorActivity extends Activity {
     				break;
     			case R.id.btn_event_contact_submit:
     				Bundle bundle = new Bundle(); 
-    		        bundle.putIntegerArrayList(ActivityConst.EVENT_CONTACT_IDS, selectedContactIdsList); 
+    		        bundle.putStringArrayList(ActivityConst.EVENT_CONTACT_IDS, selectedContactIdsList); 
     		         
     		        setResult(RESULT_OK, getIntent().putExtras(bundle));
     		        finish();

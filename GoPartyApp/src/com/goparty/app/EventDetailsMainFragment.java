@@ -1,99 +1,140 @@
 package com.goparty.app;
 
-import android.app.Activity;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import com.goparty.biz.EventService;
+import com.goparty.model.EventCategory;
+import com.goparty.model.EventDetails;
+
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+//TO-DO: we should add a loading mask and keep it with promote when error happens.
 public class EventDetailsMainFragment extends Fragment {
+	EventService eventService = new EventService();
+	EventDetails eventDetails;
+	View mainView;
+	String eventId;
+	
+	public static EventDetailsMainFragment getInstance(Bundle bundle) {  
+		EventDetailsMainFragment eventDetailsMainFragment = new EventDetailsMainFragment();  
+		eventDetailsMainFragment.setArguments(bundle);  
+	    return eventDetailsMainFragment;  
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		// TODO Auto-generated method stub
-		// return super.onCreateView(inflater, container, savedInstanceState);
-		//System.out.println("---------------onCreateView");
-		View v = inflater.inflate(R.layout.event_details_main, container, false);
-//		Button btn = (Button) v.findViewById(R.id.btn1);
-//		btn.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Toast.makeText(getActivity(), "button", Toast.LENGTH_SHORT).show();
-//			}
-//		});
-		return v;
+		mainView = inflater.inflate(R.layout.event_details_main, container, false);
+		
+		Bundle argus = getArguments();
+		eventId = argus.getString("eventId");
+		
+		if (eventId == null || eventId == "") {
+			Toast.makeText(getActivity(), "Event is empty.", Toast.LENGTH_LONG).show();
+			return mainView;
+		}
+		
+		DataQuery detailsQuery = new DataQuery();
+		boolean result = false;
+		try {
+			result = detailsQuery.execute(eventId).get();
+		} catch (InterruptedException e) {
+			Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
+		} catch (ExecutionException e) {
+			Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
+		}
+		
+		if (!result) {
+			Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
+		}
+		
+		return mainView;
 	}
-
-	/*
-	@Override
-	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onAttach");
-		super.onAttach(activity);
+	
+	private class DataQuery extends AsyncTask<String, Integer, Boolean> 
+    {
+        @Override  
+        protected void onPreExecute() 
+        {  
+        }  
+          
+        @Override  
+        protected Boolean doInBackground(String... params) 
+        {  
+            try 
+            {
+            	eventDetails = eventService.getEventDetails(params[0]);
+            } 
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return false;
+            }
+            
+            return true;
+        }  
+          
+        @Override  
+        protected void onProgressUpdate(Integer... progresses) 
+        {  
+        }  
+          
+        @Override  
+        protected void onPostExecute(Boolean result) 
+        {
+        	if (result) {
+        		bindData();
+        	}
+        	//TO-DO: we should add a loading mask and keep it with promote when error happens.
+        }  
+          
+        @Override  
+        protected void onCancelled() 
+        {  
+        }  
+    }
+	
+	private void bindData() {
+		if (eventDetails == null) {
+			return;
+		}
+		
+		TextView name = (TextView)mainView.findViewById(R.id.event_details_name);
+		name.setText(eventDetails.getTitle());
+		TextView loc = (TextView)mainView.findViewById(R.id.event_details_address);
+		loc.setText(eventDetails.getLocation());
+		
+		TextView category = (TextView)mainView.findViewById(R.id.event_details_type);
+		StringBuilder catsBuilder = new StringBuilder();
+		List<EventCategory> catsList = eventDetails.getCategories();
+		
+		if (catsList != null) {
+			for (int i = 0; i < catsList.size(); i++) {
+				catsBuilder.append(catsList.get(i));
+				if (i != catsList.size() -1) {
+					catsBuilder.append(" | ");
+				}
+			}
+		}
+		
+		category.setText(catsBuilder.toString());
+		
+		TextView start = (TextView)mainView.findViewById(R.id.event_details_starttime);
+		start.setText(eventDetails.getStartTime().toString());
+		TextView end = (TextView)mainView.findViewById(R.id.event_details_endtime);
+		end.setText(eventDetails.getEndTime().toString());
+		
+		TextView desc = (TextView)mainView.findViewById(R.id.event_details_details);
+		desc.setText(eventDetails.getDescription());
 	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onCreate");
-		super.onCreate(savedInstanceState);
-	}
-
-	@Override
-	public void onStart() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onStart");
-		super.onStart();
-	}
-
-	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onResume");
-		super.onResume();
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onSaveInstanceState");
-		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onPause");
-		super.onPause();
-	}
-
-	@Override
-	public void onDestroyView() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onDestroyView");
-		super.onDestroyView();
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onDestroy");
-		super.onDestroy();
-	}
-
-	@Override
-	public void onDetach() {
-		// TODO Auto-generated method stub
-		//System.out.println("---------------onDetach");
-		super.onDetach();
-	}
-	*/
 }

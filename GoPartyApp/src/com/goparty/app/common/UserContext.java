@@ -7,7 +7,7 @@ public class UserContext {
 		return "b0bbde4a-f1c9-4c41-afad-2cc64508fee7";
 	}
 	
-	public static int getId () {
-		return 110;
+	public static String getId () {
+		return "110";
 	}
 }

@@ -53,4 +53,68 @@ public class CommonWsDataService {
 		
 		return WebServiceConst.ERROR;
 	}
+	
+	public static String postAsJson(String url, String paramName, String paramValue) {
+		RestWsResponse rep;
+		try {
+			String bodyString = String.format("{\"%s\":\"%s\"}", paramName, paramValue);
+			rep = JsonHttpClient.post(url, bodyString);
+			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
+				return rep.getData();
+			}
+		} catch (IOException e) {
+			return WebServiceConst.HTTP_ERROR;
+		}
+		
+		return WebServiceConst.ERROR;
+	}
+	
+	public static String putJsonResult(String url, String paramName, String paramValue) {
+		RestWsResponse rep;
+		try {
+			String bodyString = jsonify(paramName, paramValue);
+			rep = JsonHttpClient.put(url, bodyString);
+			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
+				return rep.getData();
+			}
+		} catch (IOException e) {
+			return WebServiceConst.HTTP_ERROR;
+		}
+		
+		return WebServiceConst.ERROR;
+	}
+	
+	public static String putJsonResult(String url, Object requestBody) {
+		String jsonifiedPostObject = JsonUtil.serialize(requestBody);
+		if (jsonifiedPostObject.startsWith(WebServiceConst.ERROR) ||
+			jsonifiedPostObject.startsWith(WebServiceConst.JSON_ERROR)) {
+			return WebServiceConst.JSON_ERROR;
+		}
+		
+		RestWsResponse rep;
+		try {
+			rep = JsonHttpClient.put(url, jsonifiedPostObject);
+			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
+				return rep.getData();
+			}
+		} catch (IOException e) {
+			return WebServiceConst.HTTP_ERROR;
+		}
+		
+		return WebServiceConst.ERROR;
+	}
+	
+	public static boolean delete(String url) {
+		RestWsResponse rep;
+		try {
+			rep = JsonHttpClient.delete(url);
+			return rep.getCode() == WebServiceRepsonseCode.SUCCESS;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+	
+	private static String jsonify(String name, String value) {
+		return String.format("{\"%s\":\"%s\"}", name, value);
+	}
 }
