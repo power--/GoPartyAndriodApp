@@ -92,7 +92,7 @@ public class JsonHttpClient {
 	    
 	}*/
 	
-/*	public static String post(String url, byte[] content) throws IOException {
+	public static String post(String url, byte[] content) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();		
 		try {
 	    		conn.setRequestMethod("POST");
@@ -135,12 +135,13 @@ public class JsonHttpClient {
 	
 	public static String post(String url, String content) throws IOException {
 		return post(url, content.getBytes());
-	}*/
+	}
+	
 	public static RestWsResponse put(String url, String requestBody) throws IOException {
 		return postOrPut(url, requestBody, "PUT");
 	}
 	
-	public static RestWsResponse post(String url, String requestBody) throws IOException {
+	public static RestWsResponse postAndReturnObject(String url, String requestBody) throws IOException {
 		return postOrPut(url, requestBody, "POST");
 	}
 	
@@ -149,16 +150,16 @@ public class JsonHttpClient {
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 		
 		try {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	    		conn.setRequestMethod(method);
-=======
-	    		conn.setRequestMethod("POST");
+//=======
+//	    		conn.setRequestMethod("POST");
 	    		conn.setRequestProperty("Content-type","application/json");
 	    		conn.setRequestProperty("Accept","application/json");
 	    		//conn.setDoOutput(true);
 	    		conn.setConnectTimeout(TIMEOUT);
 	    		conn.setReadTimeout(TIMEOUT);
->>>>>>> FETCH_HEAD
+//>>>>>>> FETCH_HEAD
 	    		
 	    		setRequestCommonProperty(conn);
 	    		

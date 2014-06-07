@@ -16,10 +16,12 @@ import com.goparty.widget.ContactSelectorItem;
 public class ContactSelectorAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private List<Contact> contactDataList;
+	private List<String> selectdedContactIdList;
 
-	public ContactSelectorAdapter(Context context, List<Contact> contactDataList) {
+	public ContactSelectorAdapter(Context context, List<Contact> contactDataList, List<String> selectdedContactIdList) {
 		this.mInflater = LayoutInflater.from(context);
 		this.contactDataList = contactDataList;
+		this.selectdedContactIdList = selectdedContactIdList;
 	}
 
 	@Override
@@ -54,8 +56,8 @@ public class ContactSelectorAdapter extends BaseAdapter {
 		item.setContactItemData(
 				contactData.getPhoto(),
 				contactData.getNickName(),
-				false);
-
+				selectdedContactIdList.contains(contactData.getId()));
+				
 		return convertView;
 	}
 

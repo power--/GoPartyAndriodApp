@@ -5,6 +5,7 @@ import java.io.File;
 import com.goparty.app.R;
 import com.goparty.app.common.Utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
@@ -19,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -62,9 +62,9 @@ public class SettingFragment extends Fragment {
 	public void showFaceImageDialog() {
 		//Try to use DialogFragment, DialogFragment is better when you use Fragments
 		new AlertDialog.Builder(getActivity())
-				.setTitle("����ͷ��")
+				.setTitle(getString(R.string.picture))
 				.setItems(
-						new String[] { "ѡ�񱾵�ͼƬ", "����" }, 
+						new String[] { getString(R.string.select_from_gallery), getString(R.string.camera) }, 
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -78,18 +78,19 @@ public class SettingFragment extends Fragment {
 								}
 							}
 				})
-				.setNegativeButton("ȡ��", new DialogInterface.OnClickListener() {
+				.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}
 				}).show();
 	}
-	/*
+	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode == RESULT_CANCELED) {
-			Toast.makeText(MainWeixin.this, "RESULT_CANCELED",	Toast.LENGTH_LONG).show();
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		getActivity();
+		if (resultCode == Activity.RESULT_CANCELED) {
+			Toast.makeText(getActivity(), "RESULT_CANCELED",	Toast.LENGTH_LONG).show();
 			return;
 		}
 
@@ -102,7 +103,7 @@ public class SettingFragment extends Fragment {
 				if (Utils.hasSdcard()) {
 					startPhotoCrop(getTempFileUri());
 				} else {
-					Toast.makeText(MainWeixin.this, "δ�ҵ��洢�����޷��洢��Ƭ��",	Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "no camera found", Toast.LENGTH_LONG).show();
 				}
 				break;
 				
@@ -113,7 +114,6 @@ public class SettingFragment extends Fragment {
 		
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-*/
 	
 	private void showLocalImagesSelector() {
 		Intent intentFromGallery = new Intent();

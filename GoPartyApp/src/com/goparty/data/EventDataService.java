@@ -6,6 +6,7 @@ import java.util.List;
 import org.codehaus.jackson.type.TypeReference;
 
 import com.goparty.app.common.JsonUtil;
+import com.goparty.model.Event;
 import com.goparty.model.EventCategory;
 import com.goparty.model.EventCreateRequest;
 import com.goparty.model.EventDetails;
@@ -57,4 +58,19 @@ public class EventDataService {
 		
 		return JsonUtil.deserialize(jsonResult, new TypeReference<ArrayList<EventMessage>>(){});
 	}
+	
+	public List<Event> getMyEvents(int take, int skip) {
+		String url = String.format(WebServiceConst.EVENT_URL_FORMAT, skip, take);
+		String jsonResult = CommonWsDataService.getJsonResult(url);
+		
+		if (jsonResult.startsWith(WebServiceConst.ERROR)) {
+			new ArrayList<Event>();
+		}
+		
+		return JsonUtil.deserialize(jsonResult, new TypeReference<ArrayList<Event>>(){});
+	}
+	
+//	public List<EventInvite> getUnresponsedInvite(int skip, int take) {
+//		String urlString = String.format(WebServiceConst.EVENT_INVITE_URL, skip, take);
+//	}
 }

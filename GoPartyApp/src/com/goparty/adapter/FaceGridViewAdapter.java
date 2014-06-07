@@ -4,26 +4,18 @@ import java.util.List;
 
 import com.goparty.app.R;
 import com.goparty.model.Contact;
-import com.goparty.widget.ContactSelectorItem;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout.LayoutParams;
 
 public class FaceGridViewAdapter extends BaseAdapter {
-		//private LayoutInflater mInflater;
-		private final Context context;
 		private List<Contact> itemList;
-		private static Drawable DRAWABLE00;
 		private LayoutInflater mInflater;
 
 		public FaceGridViewAdapter(Context context, List<Contact> itemList) {
-			this.context = context;
 			this.itemList = itemList;
 			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}

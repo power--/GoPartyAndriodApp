@@ -47,21 +47,15 @@ public class ContactSelectorActivity extends Activity {
         super.onCreate(contactSelectorInstanceState);
         initLayout();
 		
+        ArrayList<String> selectedContactIdsList = getIntent().getStringArrayListExtra(ActivityConst.INVENT_ARG_CONTACT);
+        if (selectedContactIdsList != null && selectedContactIdsList.size() > 0) {
+        	this.selectedContactIdsList = selectedContactIdsList;
+        }
+        
         initContactListView();
         initSelectionGridView();
-	}
-	
-	private void initLayout() {
-		setContentView(R.layout.contact_selector_layout);
-		
-		ButtonOnClickListener buttonOnclickedListener = new ButtonOnClickListener();
-        Button btnNavBack = (Button) findViewById(R.id.btn_nav_contact_add_back);
-		btnNavBack.setOnClickListener(buttonOnclickedListener);
-		
-		btnSubmit = (Button) findViewById(R.id.btn_event_contact_submit);
-		btnSubmit.setOnClickListener(buttonOnclickedListener);
-		
-		String queryRes = "";
+        
+        String queryRes = "";
 		DataQuery dataQuery = new DataQuery();
 		try {
 			queryRes = dataQuery.execute("").get();
@@ -74,9 +68,20 @@ public class ContactSelectorActivity extends Activity {
 		HandleDataQueryResult(queryRes);
 	}
 	
+	private void initLayout() {
+		setContentView(R.layout.contact_selector_layout);
+		
+		ButtonOnClickListener buttonOnclickedListener = new ButtonOnClickListener();
+        Button btnNavBack = (Button) findViewById(R.id.btn_nav_contact_add_back);
+		btnNavBack.setOnClickListener(buttonOnclickedListener);
+		
+		btnSubmit = (Button) findViewById(R.id.btn_event_contact_submit);
+		btnSubmit.setOnClickListener(buttonOnclickedListener);
+	}
+	
 	private void initContactListView() {
 		contactListView = (ListView)findViewById(R.id.contactsListSelectorView);
-        resultAdapter = new ContactSelectorAdapter(this, contactDataList);
+        resultAdapter = new ContactSelectorAdapter(this, contactDataList, selectedContactIdsList);
         contactListView.setAdapter(resultAdapter);
         
         //loadingView = LayoutInflater.from(this).inflate(R.layout.list_footer, null);
@@ -192,6 +197,9 @@ public class ContactSelectorActivity extends Activity {
             	if (arrayList != null && arrayList.size() > 0) { 
         			for (Contact item : arrayList) {
         				contactDataList.add(item);
+        				if (selectedContactIdsList.contains(item.getId())) {
+        					faceDataList.add(item);
+        				}
         			}
         		}
             } 
@@ -213,6 +221,8 @@ public class ContactSelectorActivity extends Activity {
         protected void onPostExecute(String result) 
         {
         	resultAdapter.notifyDataSetChanged();
+        	resetFaceGridViewParam();
+        	faceGridViewAdapter.notifyDataSetChanged();
         }  
           
         @Override  

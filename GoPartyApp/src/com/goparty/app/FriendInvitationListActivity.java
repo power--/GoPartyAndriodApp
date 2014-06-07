@@ -144,11 +144,11 @@ public class FriendInvitationListActivity extends Activity {
 	            {
 	            	ContactService contactService = new ContactService();
 	            	ArrayList<FriendInvitation> friendInvits = (ArrayList<FriendInvitation>)contactService.getInvits();
-	            	if (friendInvits != null && friendInvits.size() > 0) {
+	            	if (friendInvits == null) {
+	            		return "error";
+	            	} else if (friendInvits.size() > 0) {
 	            		friendInviteDataList.clear();
 	            		friendInviteDataList.addAll(friendInvits);
-	        		} else {
-	        			return "error";
 	        		}
 	            } 
 	            catch (Exception e)

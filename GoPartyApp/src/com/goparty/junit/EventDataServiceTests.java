@@ -34,7 +34,7 @@ public class EventDataServiceTests extends AndroidTestCase {
 		requestBody.setDescription("trigger by UT");
 		
 		EventCategory cate = new EventCategory();
-		cate.setId(1);
+		cate.setId("1");
 		requestBody.getCategories().add(cate);
 		
 		EventCreateMembersRequest mem1 = new EventCreateMembersRequest();

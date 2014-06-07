@@ -2,9 +2,8 @@ package com.goparty.app;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 import com.goparty.app.common.ActivityConst;
 import com.goparty.datetimepicker.JudgeDate;
@@ -17,8 +16,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 
 public class EventDateSelectorActivity  extends Activity {
@@ -44,18 +43,34 @@ public class EventDateSelectorActivity  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_date_selector);
         
+        initDatetimes();
         initComponents();
-        startDatetime = Calendar.getInstance();
         
         initDatetimePicker(wheelMain, startDatetime);
         
         resetDateValue(startDatetime, tvStartDate, tvStartDay, tvStartTime);
         resetStartDateStyle(true);
         
-        endDatetime = Calendar.getInstance();
-        endDatetime.add(Calendar.HOUR, 3);
         resetDateValue(endDatetime, tvEndDate, tvEndDay, tvEndTime);
         resetEndDateStyle(false);
+    }
+    
+    private void initDatetimes() {
+    	startDatetime = Calendar.getInstance();
+        endDatetime = Calendar.getInstance();
+        
+    	Intent intent = getIntent();
+        String startString = intent.getStringExtra(ActivityConst.INVENT_ARG_EVENT_START_DATE);
+        if (startString != null && !startString.equals("")) {
+        	startDatetime.setTimeInMillis(Long.valueOf(startString));
+        	
+        	String endString = intent.getStringExtra(ActivityConst.INVENT_ARG_EVENT_END_DATE);
+            if (endString != null && !endString.equals("")) {
+            	endDatetime.setTimeInMillis(Long.valueOf(endString));
+            }
+        } else {
+        	endDatetime.add(Calendar.HOUR, 3);
+        }
     }
     
 //    private class BackOnClick implements OnClickListener {
@@ -165,14 +180,13 @@ public class EventDateSelectorActivity  extends Activity {
     		TextView dateTextView,
     		TextView dayTextView,
     		TextView timeTextView) {
-//    	Date nowDate = calendar.getTime();
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     	
     	dateTextView.setText(dateFormat.format(dateVal.getTime()));
 		
     	dayTextView.setText(String.format("%s%s", getString(R.string.day_of_week), dateVal.get(Calendar.DAY_OF_WEEK)));
 		
-		dateFormat = new SimpleDateFormat("HH:mm");
+		dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 		timeTextView.setText(dateFormat.format(dateVal.getTime()));
     }
     
@@ -234,7 +248,7 @@ public class EventDateSelectorActivity  extends Activity {
     	}
     	
 		try {
-			SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
 			cal.setTime(datetimeFormat.parse(inputTime));
 			return cal;			
 		} catch (ParseException e) {

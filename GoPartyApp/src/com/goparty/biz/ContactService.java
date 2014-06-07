@@ -61,7 +61,7 @@ public class ContactService {
 	public boolean acceptFriendInvite(String inviteId, String message, Collection<ContactGroup> groups) {
 		FriendInvitResponse response = new FriendInvitResponse();
 		response.setAcceptance("Y");
-		response.setInviteeMessage(message);
+		response.setMessage(message);
 		response.setGroups(groups);
 		
 		return dataService.acceptInvite(inviteId, response);

@@ -1,6 +1,9 @@
 package com.goparty.app;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import com.goparty.biz.EventService;
@@ -8,15 +11,16 @@ import com.goparty.model.EventCategory;
 import com.goparty.model.EventDetails;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//TO-DO: we should add a loading mask and keep it with promote when error happens.
 public class EventDetailsMainFragment extends Fragment {
 	EventService eventService = new EventService();
 	EventDetails eventDetails;
@@ -33,7 +37,6 @@ public class EventDetailsMainFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		mainView = inflater.inflate(R.layout.event_details_main, container, false);
 		
 		Bundle argus = getArguments();
@@ -44,7 +47,25 @@ public class EventDetailsMainFragment extends Fragment {
 			return mainView;
 		}
 		
-		DataQuery detailsQuery = new DataQuery();
+		initViews();
+		queryEventDetailsData();
+		
+		return mainView;
+	}
+	
+	private void initViews() {
+		Button btnEdit = (Button)mainView.findViewById(R.id.btn_event_details_edit);
+		btnEdit.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(getActivity(), EventEditActivity.class);
+				startActivity(intent);
+			}
+		});
+	}
+	
+	private void queryEventDetailsData() {
+		DataQueryTask detailsQuery = new DataQueryTask();
 		boolean result = false;
 		try {
 			result = detailsQuery.execute(eventId).get();
@@ -57,11 +78,9 @@ public class EventDetailsMainFragment extends Fragment {
 		if (!result) {
 			Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
 		}
-		
-		return mainView;
 	}
 	
-	private class DataQuery extends AsyncTask<String, Integer, Boolean> 
+	private class DataQueryTask extends AsyncTask<String, Integer, Boolean> 
     {
         @Override  
         protected void onPreExecute() 
@@ -120,7 +139,7 @@ public class EventDetailsMainFragment extends Fragment {
 		
 		if (catsList != null) {
 			for (int i = 0; i < catsList.size(); i++) {
-				catsBuilder.append(catsList.get(i));
+				catsBuilder.append(catsList.get(i).getName());
 				if (i != catsList.size() -1) {
 					catsBuilder.append(" | ");
 				}
@@ -130,11 +149,16 @@ public class EventDetailsMainFragment extends Fragment {
 		category.setText(catsBuilder.toString());
 		
 		TextView start = (TextView)mainView.findViewById(R.id.event_details_starttime);
-		start.setText(eventDetails.getStartTime().toString());
+		start.setText(format(eventDetails.getStartTime()));
 		TextView end = (TextView)mainView.findViewById(R.id.event_details_endtime);
-		end.setText(eventDetails.getEndTime().toString());
+		end.setText(format(eventDetails.getEndTime()));
 		
 		TextView desc = (TextView)mainView.findViewById(R.id.event_details_details);
 		desc.setText(eventDetails.getDescription());
+	}
+	
+	private String format(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.getDefault());
+    	return dateFormat.format(date);
 	}
 }

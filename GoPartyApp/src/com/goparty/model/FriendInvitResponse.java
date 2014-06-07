@@ -16,7 +16,7 @@ public class FriendInvitResponse {
 //	}
 	private String acceptance;
 	private Collection<ContactGroup> groups;
-	private String inviteeMessage;
+	private String message;
 	
 	public String getAcceptance() {
 		return acceptance;
@@ -30,10 +30,10 @@ public class FriendInvitResponse {
 	public void setGroups(Collection<ContactGroup> groups) {
 		this.groups = groups;
 	}
-	public String getInviteeMessage() {
-		return inviteeMessage;
+	public String getMessage() {
+		return message;
 	}
-	public void setInviteeMessage(String inviteeMessage) {
-		this.inviteeMessage = inviteeMessage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

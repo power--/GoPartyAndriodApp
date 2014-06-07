@@ -1,15 +1,15 @@
 package com.goparty.model;
 
 public class EventCategory {
-    private int id;
+    private String id;
     private String name;
     private String logo;
     
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -31,6 +31,6 @@ public class EventCategory {
     
 //    @Override
 //    public String toString() {
-//            return "EventCategory [id=" + id + ", name=" + name + "]";
+//    	return "EventCategory [id=" + id + ", name=" + name + "]";
 //    }
 }

@@ -50,7 +50,7 @@
         <!--  
         <activity android:name=".Login"  android:theme="@android:style/Theme.NoTitleBar" />   
         -->      
-        <activity android:name=".EventCreateActivity"  android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".EventEditActivity"  android:theme="@android:style/Theme.NoTitleBar" />
         <activity android:name=".EventDateSelectorActivity" android:theme="@android:style/Theme.NoTitleBar" />   
         <activity android:name=".EventTypeSelectorActivity" android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".EventDetailsActivity" android:theme="@android:style/Theme.NoTitleBar"/>

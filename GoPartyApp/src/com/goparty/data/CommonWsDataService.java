@@ -43,7 +43,7 @@ public class CommonWsDataService {
 		
 		RestWsResponse rep;
 		try {
-			rep = JsonHttpClient.post(url, jsonifiedPostObject);
+			rep = JsonHttpClient.postAndReturnObject(url, jsonifiedPostObject);
 			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
 				return rep.getData();
 			}
@@ -58,7 +58,7 @@ public class CommonWsDataService {
 		RestWsResponse rep;
 		try {
 			String bodyString = String.format("{\"%s\":\"%s\"}", paramName, paramValue);
-			rep = JsonHttpClient.post(url, bodyString);
+			rep = JsonHttpClient.postAndReturnObject(url, bodyString);
 			if (rep.getCode() == WebServiceRepsonseCode.SUCCESS) {
 				return rep.getData();
 			}

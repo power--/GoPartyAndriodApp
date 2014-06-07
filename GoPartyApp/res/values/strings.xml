@@ -10,12 +10,15 @@
     <string name="placeholder1">placeholder1</string>
     <string name="placeholder2">placeholder2</string>
     <string name="confirm">确定</string>
+    <string name="edit">编辑</string>
     <string name="chat">聊天</string>
     <string name="time">时间</string>
     <string name="empty"></string>
     <string name="status_operation_failure">操作失败</string>
     <string name="status_operation_success">操作成功</string>
     <string name="no_data">没有数据</string>
+    <string name="picture">图片</string>
+    <string name="cancel">取消</string>
     <!-- navigation menu -->
 	<string name="home">首页</string>
 	<string name="contact">联系人</string>
@@ -32,6 +35,7 @@
 	<string name="message_code">输入验证码</string>
 	<string name="login">登录</string>
 	<!-- event -->
+	<string name="my_events">我的活动</string>
 	<string name="event_name">活动名称</string>
 	<string name="address">地址</string>
 	<string name="start">开始</string>
@@ -42,6 +46,7 @@
 	<string name="event_type">活动类型</string>
 	<string name="details">详情</string>
 	<string name="event_invite">活动邀请</string>
+	<string name="received_event_invit">收到的活动邀请</string>
 	<string name="selected">选中</string>
 	<string name="day_of_week">星期</string>
 	<string name="share">分享</string>
@@ -72,4 +77,6 @@
 	<string name="send">发送</string>
 	<!-- Error -->
 	<string name="activity_intent_commu_not_ok">通讯未成功</string>
+	<string name="camera">拍照</string>
+	<string name="select_from_gallery">从手机相册选择</string>
 </resources>

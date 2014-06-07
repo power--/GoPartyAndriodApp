@@ -22,7 +22,7 @@ public class FriendInvitation implements Parcelable {
 	
 	String invitationId;
 	Contact inviter;
-	String inviterMessage;
+	String message;
 	String status;
 	long updateTime;
 	
@@ -64,10 +64,10 @@ public class FriendInvitation implements Parcelable {
 		this.inviter = inviter;
 	}
 	public String getInviterMessage() {
-		return inviterMessage;
+		return message;
 	}
-	public void setInviterMessage(String inviterMessage) {
-		this.inviterMessage = inviterMessage;
+	public void setInviterMessage(String message) {
+		this.message = message;
 	}
 	public String getStatus() {
 		return status;
@@ -95,7 +95,7 @@ public class FriendInvitation implements Parcelable {
 // "inviterMessage":"nice to meet you!","status":"INIT","updateTime":1398483180000}]"
 		dest.writeString(invitationId);
     	dest.writeParcelable(inviter, 0);//0 = parcelableFlags??
-    	dest.writeString(inviterMessage);
+    	dest.writeString(message);
     	dest.writeLong(updateTime);
 	}
 	
@@ -106,7 +106,7 @@ public class FriendInvitation implements Parcelable {
         	FriendInvitation invite = new FriendInvitation();
         	invite.invitationId = source.readString();
         	invite.inviter = source.readParcelable(classLoader);
-        	invite.inviterMessage = source.readString();
+        	invite.message = source.readString();
         	invite.updateTime = source.readLong();
         	
             return invite;

@@ -1,15 +1,11 @@
 package com.goparty.widget;
 
-import com.goparty.app.ContactSelectorActivity;
 import com.goparty.app.R;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ContactSelectorItem extends LinearLayout
 {
@@ -39,7 +35,7 @@ public class ContactSelectorItem extends LinearLayout
 	public void setContactItemData(String faceUri, String name, boolean isSelected) {
 		contactFace.setFaceUri(faceUri);
 		contactName.setText(name);
-		contactCheckBox.setSelected(isSelected);
+		contactCheckBox.setChecked(isSelected);
 	}
 	
 	public boolean setSelected() {

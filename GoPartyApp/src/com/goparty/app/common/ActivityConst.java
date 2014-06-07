@@ -18,5 +18,11 @@ public class ActivityConst {
 	
 	public final static String INTENT_ARG_FRIEND_INVITE = "ArgFriendInvite";
 	
+	public final static String INVENT_ARG_EVENT_ID = "ArgEventId";
+	public final static String INVENT_ARG_EVENT_START_DATE = "ArgEventStartDate";
+	public final static String INVENT_ARG_EVENT_END_DATE = "ArgEventEndDate";
+	public final static String INVENT_ARG_EVENT_TYPE = "ArgEventType";
+	public final static String INVENT_ARG_CONTACT = "ArgContact";
+	
 	public enum OperationType { CREATE, DEL, UPDATE }
 }

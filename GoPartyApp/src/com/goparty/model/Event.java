@@ -7,17 +7,35 @@ public class Event {
     private String id;
     private String title;
     private User owner;
-    private Location location;
+    //private Location location;
+    private String location;
     private Date startTime;
     private Date endTime;
-    private EventCategory eventCategory;
-    private List<User> attendees;
+    private List<EventCategory> categories;
+    private List<User> members;
     private String description;
     
-    private EventStatus eventStatus;
-    private VisibilityCategory visiblityCategory;
+    //private EventStatus eventStatus;
+    private String status;
+    //private VisibilityCategory visiblityCategory;
+    private String visibility;
     
-   public String getId() {
+    public String getVisibility() {
+		return visibility;
+	}
+	public void setVisibility(String visibility) {
+		this.visibility = visibility;
+	}
+	private boolean locationShareable;
+    
+    
+   public boolean isLocationShareable() {
+		return locationShareable;
+	}
+	public void setLocationShareable(boolean locationShareable) {
+		this.locationShareable = locationShareable;
+	}
+public String getId() {
            return id;
    }
    public void setId(String id) {
@@ -29,10 +47,10 @@ public class Event {
    public void setTitle(String title) {
            this.title = title;
    }
-   public Location getLocation() {
+   public String getLocation() {
            return location;
    }
-   public void setLocation(Location location) {
+   public void setLocation(String location) {
            this.location = location;
    }
    public Date getStartTime() {
@@ -49,11 +67,11 @@ public class Event {
    }
    
 //   @XmlElementWrapper
-   public List<User> getAttendees() {
-           return attendees;
+   public List<User> getMembers() {
+           return members;
    }
-   public void setAttendees(List<User> attendees) {
-           this.attendees = attendees;
+   public void setAttendees(List<User> members) {
+           this.members = members;
    }
    public User getOwner() {
            return owner;
@@ -67,24 +85,24 @@ public class Event {
    public void setDescription(String description) {
            this.description = description;
    }
-   public EventCategory getEventCategory() {
-           return eventCategory;
+   public List<EventCategory> getCategories() {
+           return categories;
    }
-   public void setEventCategory(EventCategory eventCategory) {
-           this.eventCategory = eventCategory;
+   public void setEventCategory(List<EventCategory> categories) {
+           this.categories = categories;
    }
-   public EventStatus getEventStatus() {
-           return eventStatus;
+   public String getStatus() {
+           return status;
    }
-   public void setEventStatus(EventStatus eventStatus) {
-           this.eventStatus = eventStatus;
+   public void setStatus(String status) {
+           this.status = status;
    }
-   public VisibilityCategory getVisiblityCategory() {
-           return visiblityCategory;
-   }
-   public void setVisiblityCategory(VisibilityCategory visiblityCategory) {
-           this.visiblityCategory = visiblityCategory;
-   }
+//   public VisibilityCategory getVisiblityCategory() {
+//           return visiblityCategory;
+//   }
+//   public void setVisiblityCategory(VisibilityCategory visiblityCategory) {
+//           this.visiblityCategory = visiblityCategory;
+//   }
    
 //   @Override
 //   public String toString() {

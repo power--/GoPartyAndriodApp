@@ -23,17 +23,17 @@ public class ChatMsgViewAdapter extends BaseAdapter {
 		int IMVT_TO_MSG = 1;
 	}
 	
-    private static final String TAG = ChatMsgViewAdapter.class.getSimpleName();
+//    private static final String TAG = ChatMsgViewAdapter.class.getSimpleName();
 
 //    private List<ChatMsgEntity> coll;
     private List<EventMessage> coll;
 
-    private Context ctx;
+//    private Context ctx;
     
     private LayoutInflater mInflater;
 
     public ChatMsgViewAdapter(Context context, List<EventMessage> coll) {
-        ctx = context;
+//        ctx = context;
         this.coll = coll;
         mInflater = LayoutInflater.from(context);
     }

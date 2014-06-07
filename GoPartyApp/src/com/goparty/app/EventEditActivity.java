@@ -1,6 +1,9 @@
 package com.goparty.app;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import com.goparty.app.common.ActivityConst;
@@ -23,7 +26,7 @@ import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
 
-public class EventCreateActivity extends Activity {
+public class EventEditActivity extends Activity {
 	private final int EVENT_TYPE_REQUEST_TEXT = 0;
 	private final int EVENT_CONTACT_REQUEST_TEXT = 1;
 	private final int EVENT_DATE_REQUEST_TEXT = 2;
@@ -31,8 +34,10 @@ public class EventCreateActivity extends Activity {
 	private TextView contactCountTextView;
 	private long startDate;
 	private long endDate;
-	private ArrayList<EventCategory> eventCategories = new ArrayList<EventCategory>();
-	private ArrayList<String> eventMembers = new ArrayList<String>();
+	private boolean isDatesReturned;
+	//private ArrayList<EventCategory> eventCategories = new ArrayList<EventCategory>();
+	private ArrayList<String> selectedCategoryIdList = new ArrayList<String>();
+	private ArrayList<String> selectedEventMembers = new ArrayList<String>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,19 +51,23 @@ public class EventCreateActivity extends Activity {
     	public void onClick(View v) {
     		switch (v.getId()) {
     			case R.id.layout_event_create_date:
-    				Intent eventDateIntent = new Intent(EventCreateActivity.this, EventDateSelectorActivity.class);			
+    				Intent eventDateIntent = new Intent(EventEditActivity.this, EventDateSelectorActivity.class);
+    				if (isDatesReturned) {
+    					eventDateIntent.putExtra(ActivityConst.INVENT_ARG_EVENT_START_DATE, String.valueOf(startDate));
+    					eventDateIntent.putExtra(ActivityConst.INVENT_ARG_EVENT_END_DATE, String.valueOf(endDate));
+    				}
     				startActivityForResult(eventDateIntent, EVENT_DATE_REQUEST_TEXT);
     				break;
     				
     			case R.id.event_add_type_add:
-    				Intent eventTypeIntent = new Intent(EventCreateActivity.this, EventTypeSelectorActivity.class);			
-    				//startActivity(eventTypeIntent);
+    				Intent eventTypeIntent = new Intent(EventEditActivity.this, EventTypeSelectorActivity.class);	
+    				eventTypeIntent.putStringArrayListExtra(ActivityConst.INVENT_ARG_EVENT_TYPE, selectedCategoryIdList);
     				startActivityForResult(eventTypeIntent, EVENT_TYPE_REQUEST_TEXT);
     	    		break;
     	    		
     			case R.id.event_add_contact:
-    				Intent contactSelectorIntent = new Intent(EventCreateActivity.this, ContactSelectorActivity.class);			
-    	    		//startActivity(contactSelectorIntent);
+    				Intent contactSelectorIntent = new Intent(EventEditActivity.this, ContactSelectorActivity.class);
+    				contactSelectorIntent.putStringArrayListExtra(ActivityConst.INVENT_ARG_CONTACT, selectedEventMembers);
     				startActivityForResult(contactSelectorIntent, EVENT_CONTACT_REQUEST_TEXT);
     				break;
     				
@@ -67,7 +76,6 @@ public class EventCreateActivity extends Activity {
     				break;
     				
     			case R.id.btn_event_add_submit:
-    				//Toast.makeText(getApplicationContext(), "btn_event_add_submit clicked", Toast.LENGTH_LONG).show();
     				if (validateInput()) {
     					PostDataTask postTask = new PostDataTask();
     					String result;
@@ -92,64 +100,63 @@ public class EventCreateActivity extends Activity {
     	}
     	
     	if (resultCode != RESULT_OK) {
-    		//if (resultCode != RESULT_OK) {}
     		String msg = String.format("%s; %s;", getString(R.string.activity_intent_commu_not_ok), resultCode);
     		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     		return;
     	}
     	
-        if (requestCode == EVENT_TYPE_REQUEST_TEXT) { 
-            Bundle bundle = data.getExtras(); 
-            ArrayList<String> selectedCategoryIdList = bundle.getStringArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
-//           
-            StringBuilder builder = new StringBuilder();
-//			for (String id : selectedCategoryIdList) {
-//				builder.append(id);
-//				builder.append(";");
-//			}
-//			
-			updateCountTextView(typeCountTextView, selectedCategoryIdList.size());
-			
-            for (String id : selectedCategoryIdList) {
-            	EventCategory category = new EventCategory();
-            	category.setId(Integer.parseInt(id));
-            	eventCategories.add(category);
-            	
-            	builder.append(id);
-				builder.append(";");
-			}
-			
-            Toast.makeText(this, builder, Toast.LENGTH_SHORT).show(); 
+    	if (requestCode == EVENT_DATE_REQUEST_TEXT) {
+    		onDatesSelectionResult(data);
+        } else if (requestCode == EVENT_TYPE_REQUEST_TEXT) { 
+    		onTypesSelectionResult(data);
         } else if (requestCode == EVENT_CONTACT_REQUEST_TEXT) { 
-        	Bundle bundle = data.getExtras(); 
-            ArrayList<String> selectedContactIdList = bundle.getStringArrayList(ActivityConst.EVENT_CONTACT_IDS);
-            
-            StringBuilder builder = new StringBuilder();
-			for (String id : selectedContactIdList) {
-				builder.append(id);
-				builder.append(";");
-				
-				eventMembers.add(id);
-			}
-            
-			updateCountTextView(contactCountTextView, selectedContactIdList.size());
-			
-            Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
-        } else if (requestCode == EVENT_DATE_REQUEST_TEXT) {
-        	Bundle bundle = data.getExtras(); 
-            long[] selectedDateList = bundle.getLongArray(ActivityConst.EVENT_DATE_IDS);
-            if (selectedDateList != null) {
-            	startDate = selectedDateList[0];
-            	endDate = selectedDateList[1];
-            }
-//            StringBuilder builder = new StringBuilder();
-//			for (String date : selectedDateList) {
-//				builder.append(date);
-//				builder.append(";");
-//			}
-//			Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
-			updateDatesView();
+        	onContactsSelectionResult(data);
         }
+    }
+    
+    private void onDatesSelectionResult(Intent data) {
+    	Bundle bundle = data.getExtras(); 
+        long[] selectedDateList = bundle.getLongArray(ActivityConst.EVENT_DATE_IDS);
+        if (selectedDateList != null) {
+        	isDatesReturned = true;
+        	startDate = selectedDateList[0];
+        	endDate = selectedDateList[1];
+        	((TextView)findViewById(R.id.layout_event_create_startdate)).setText(formatDate(startDate));
+            ((TextView)findViewById(R.id.layout_event_create_enddate)).setText(formatDate(endDate));
+        }
+    }
+    
+    private void onTypesSelectionResult(Intent data) {
+    	Bundle bundle = data.getExtras(); 
+        selectedCategoryIdList = bundle.getStringArrayList(ActivityConst.EVENT_CATEGORY_IDS); 
+		updateCountTextView(typeCountTextView, selectedCategoryIdList.size());
+//
+//		StringBuilder builder = new StringBuilder();
+//        for (String id : selectedCategoryIdList) {
+//        	EventCategory category = new EventCategory();
+//        	category.setId(Integer.parseInt(id));
+//        	eventCategories.add(category);
+//        	
+//        	builder.append(id);
+//			builder.append(";");
+//		}
+//		
+//        Toast.makeText(this, builder, Toast.LENGTH_SHORT).show(); 
+    }
+    
+    private void onContactsSelectionResult(Intent data) {
+    	Bundle bundle = data.getExtras(); 
+    	selectedEventMembers = bundle.getStringArrayList(ActivityConst.EVENT_CONTACT_IDS);
+        updateCountTextView(contactCountTextView, selectedEventMembers.size());
+        
+//        StringBuilder builder = new StringBuilder();
+//		for (String id : selectedContactIdList) {
+//			builder.append(id);
+//			builder.append(";");
+//			
+//			eventMembers.add(id);
+//		}
+//        Toast.makeText(this, builder, Toast.LENGTH_SHORT).show();
     }
     
     private void updateCountTextView(TextView view, int count) {
@@ -160,11 +167,7 @@ public class EventCreateActivity extends Activity {
     		view.setVisibility(View.VISIBLE);
     	}
     }
-    
-    private void updateDatesView() {
-    	
-    }
-    
+       
     private void initComponentLayout() {
 		 LayoutOnClickListener onclickEventListener = new LayoutOnClickListener();
 		        
@@ -198,12 +201,12 @@ public class EventCreateActivity extends Activity {
 			return false;
 		}
 		
-		if (eventCategories.size() == 0) {
+		if (selectedCategoryIdList.size() == 0) {
 			Toast.makeText(getApplicationContext(), "Category is empty.", Toast.LENGTH_LONG).show();
 			return false;
 		}
 		
-		if (eventMembers.size() == 0) {
+		if (selectedEventMembers.size() == 0) {
 			Toast.makeText(getApplicationContext(), "Member is empty.", Toast.LENGTH_LONG).show();
 			return false;
 		}
@@ -218,15 +221,16 @@ public class EventCreateActivity extends Activity {
     	req.setStartTime(startDate);
 		req.setEndTime(endDate);
 		
-		
 		req.setLocation(((EditText)findViewById(R.id.event_add_address)).getText().toString());
 		req.setDescription(((EditText)findViewById(R.id.event_add_details)).getText().toString());
 		
-		for (EventCategory cate : eventCategories) {
-			req.getCategories().add(cate);			
+		for (String cateId : selectedCategoryIdList) {
+			EventCategory eventCate = new EventCategory();
+			eventCate.setId(cateId);
+			req.getCategories().add(eventCate);			
 		}
 		
-		for (String id : eventMembers) {
+		for (String id : selectedEventMembers) {
 			EventCreateMembersRequest mem = new EventCreateMembersRequest();
 			mem.setId(id);
 			//to get value from ui
@@ -267,7 +271,7 @@ public class EventCreateActivity extends Activity {
             {
             	EventService eventService = new EventService();
             	boolean result = eventService.createEvent(params[0]);
-            	if (!result) {
+            	if (result) {
             		return "ok";
         		}
             } 
@@ -295,4 +299,9 @@ public class EventCreateActivity extends Activity {
         {  
         }  
     }
+    
+	private String formatDate(long date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.getDefault());
+    	return dateFormat.format(new Date(date));
+	}
 }
